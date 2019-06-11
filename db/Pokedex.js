@@ -45,11 +45,19 @@ function createPokemonFromRecord(o) {
  * @param {*} filter
  */
 function prepareFilters(query, filter) {
-	if (filter.name) {
+	let _filter = _.clone(filter)
+	if (_filter.name) {
 		query = query.where("name", "like", "%" + filter.name + "%")
-		delete filter.name
+		delete _filter.name
 	}
-	query = query.where(filter)
+	if(_filter.types && Array.isArray(_filter.types)){
+		for(i in _filter.types){
+			query = query.where("types", "like", "%" + _filter.types[i] + "%")
+		}
+		delete _filter.types
+	}
+	query = query.where(_filter)
+	//console.log(query.toString())
 }
 
 class Pokedex {

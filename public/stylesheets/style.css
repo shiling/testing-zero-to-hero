@@ -15,6 +15,73 @@ a {
 	float: right;
 }
 
+.mr-m {
+	margin-right: 1rem;
+}
+
+.ml-m {
+	margin-left: 1rem;
+}
+
+.mt-m {
+	margin-top: 1rem;
+}
+
+.mb-m {
+	margin-bottom: 1rem;
+}
+
+.search-box {
+	background: #eceff1;
+	border: 1px solid #eeeeee;
+	border-radius: 5px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.form-row {
+	display: flex;
+}
+
+.form-label {
+	display: inline-block;
+	width: 200px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.toggle-input {
+  display: inline-block;
+}
+
+.toggle-input input[type="radio"],
+.toggle-input input[type="checkbox"] {
+	margin-right: 8px;
+}
+
+.toggle-input input[type="radio"] ~ span,
+.toggle-input input[type="checkbox"] ~ span {
+	margin-right: 16px;
+}
+
+.form-submit-btn {
+	background-color: #2962ff;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	font-weight: bold;
+	padding: 0.5rem;
+}
+
+.form-reset-btn {
+	background-color: white;
+	color: black;
+	border: none;
+	border-radius: 3px;
+	font-weight: bold;
+	padding: 0.5rem;
+}
+
 .pokemon-list {
 	width: 100%;
 	display: flex;
@@ -154,6 +221,11 @@ a {
 .pokemon-card-type--Dragon {
 	background: #ffccbc;
 	color: black;
+}
+
+.pokemon-card[data-legendary] {
+	box-shadow: 0 0 4px 4px #fdd835;
+	border: 1px solid #fdd835;
 }
 
 .pokemon-card .pokemon-card-title {

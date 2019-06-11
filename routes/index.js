@@ -18,7 +18,15 @@ router.get("/", async function(req, res, next) {
 		filter.name = req.query.name
 	}
 
-	// type
+	// name
+	if (req.query.types) {
+		filter.types = req.query.types
+
+		// coerce to array
+		if(typeof filter.types === "string"){
+			filter.types = [filter.types]
+		}
+	}
 
 	// generation
 	if (req.query.generation) {
@@ -34,6 +42,12 @@ router.get("/", async function(req, res, next) {
 
 	res.render("index", {
 		title: "Pokedex",
+		filter: {
+			name: filter.name || "",
+			types: filter.types || [],
+			generation: filter.generation || "",
+			legendary: req.query.legendary || ""
+		},
 		pokemons: pokemons
 	})
 

@@ -2,9 +2,87 @@ extends layout
 
 block content
 	h1= title
+	div(class="search-box mb-m")
+		form(action="")
+			div(class="form-row mb-m")
+				label(class="form-label mr-m") Name
+				input(type="text", name="name", value="#{filter.name || ''}")
+			div(class="form-row mb-m")
+				label(class="form-label mr-m") Type
+				div
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Grass", checked=(filter.types.includes("Grass"))) 
+						span Grass
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Poison", checked=(filter.types.includes("Poison"))) 
+						span Poison
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Fire", checked=(filter.types.includes("Fire"))) 
+						span Fire
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Bug", checked=(filter.types.includes("Bug"))) 
+						span Bug
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Flying", checked=(filter.types.includes("Flying"))) 
+						span Flying
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Fairy", checked=(filter.types.includes("Fairy"))) 
+						span Fairy
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Ground", checked=(filter.types.includes("Ground"))) 
+						span Ground
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Rock", checked=(filter.types.includes("Rock"))) 
+						span Rock
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Steel", checked=(filter.types.includes("Steel"))) 
+						span Steel
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Fighting", checked=(filter.types.includes("Fighting"))) 
+						span Fighting
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Ghost", checked=(filter.types.includes("Ghost"))) 
+						span Ghost
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Ice", checked=(filter.types.includes("Ice"))) 
+						span Ice
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Electric", checked=(filter.types.includes("Electric"))) 
+						span Electric
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Dark", checked=(filter.types.includes("Dark"))) 
+						span Dark
+					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Dragon", checked=(filter.types.includes("Dragon"))) 
+						span Dragon
+			div(class="form-row mb-m")
+				label(class="form-label mr-m") Generation
+				select(name="generation")
+					option(value="", selected=(filter.generation === "")) All
+					option(value="1", selected=(filter.generation === 1)) 1
+					option(value="2", selected=(filter.generation === 2)) 2
+					option(value="3", selected=(filter.generation === 3)) 3
+					option(value="4", selected=(filter.generation === 4)) 4
+					option(value="5", selected=(filter.generation === 5)) 5
+					option(value="6", selected=(filter.generation === 6)) 6
+			div(class="form-row mb-m")
+				label(class="form-label mr-m") Legendary
+				label(class="toggle-input")
+					input(type="radio", name="legendary", value="", checked=(filter.legendary === ""))
+					span All
+				label(class="toggle-input")
+					input(type="radio", name="legendary", value="1", checked=(filter.legendary === "1"))
+					span Yes
+				label(class="toggle-input")
+					input(type="radio", name="legendary", value="0", checked=(filter.legendary === "0"))
+					span No
+			div(class="form-row")
+				label(class="form-label mr-m") 
+				button(type="submit", class="form-submit-btn mr-m") Search
+				button(type="button", class="form-reset-btn mr-m", onclick="location.href='/?'") Clear
 	div(class="pokemon-list")
 		each pokemon in pokemons
-			div(class="pokemon-card pokemon-card--" + pokemon.types[0])
+			div(class="pokemon-card pokemon-card--" + pokemon.types[0], data-legendary=pokemon.legendary)
 				div(class="pokemon-card-info")
 					div(class="pokemon-card-id")
 						span= "#" + pokemon.id
