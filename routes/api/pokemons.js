@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const Pokemon = require("../models/Pokemon")
-const Pokedex = require("../db/Pokedex")
-const config = require("../config")[process.env.NODE_ENV || "development"]
+const Pokemon = require("../../models/Pokemon")
+const Pokedex = require("../../db/Pokedex")
+const config = require("../../config")[process.env.NODE_ENV || "development"]
 
 // init database
 let pokedex = new Pokedex()
