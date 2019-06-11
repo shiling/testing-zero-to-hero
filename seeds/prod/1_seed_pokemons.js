@@ -4,7 +4,7 @@ const csvParse = require("csv-parse/lib/sync")
 const Pokemon = require("../../models/Pokemon")
 
 function prepareUpdateObject(o) {
-	let update = _.pick(o, ["name", "types", "hp", "attack", "defense", "sp_attack", "sp_defense", "speed", "generation", "legendary"])
+	let update = _.pick(o, ["id", "name", "types", "hp", "attack", "defense", "sp_attack", "sp_defense", "speed", "generation", "legendary"])
 	update.types = JSON.stringify(update.types)
 	let ts = new Date().getTime()
 	update.created_at = update.created_at || ts
