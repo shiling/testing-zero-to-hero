@@ -53,4 +53,20 @@ router.get("/", async function(req, res, next) {
 
 })
 
+router.get("/info/:id", async function(req, res, next) {
+
+	let pokemon = await pokedex.get(req.params.id)
+
+	if(!pokemon){
+		res.statusCode = 404
+		next(new Error("Pokemon not found"))
+	}
+
+	res.render("pokemonCard", {
+		title: "Pokedex - " + pokemon.name,
+		pokemon: pokemon
+	})
+
+})
+
 module.exports = router

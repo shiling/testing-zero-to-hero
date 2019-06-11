@@ -7,6 +7,7 @@
     "test": "mocha \"./tests/*.js\" --exit"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "chakram": "^1.5.0",
@@ -15,12 +16,13 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
+    "jade": "^1.11.0",
     "knex": "^0.17.5",
     "lodash": "^4.17.11",
     "mocha": "^6.1.4",
     "mongodb": "^3.2.7",
     "morgan": "~1.9.1",
-    "sqlite3": "^4.0.8"
+    "pug": "^2.0.3",
+    "sqlite3": "^4.0.8",
   }
 }

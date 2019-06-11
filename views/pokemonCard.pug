@@ -1,0 +1,7 @@
+extends layout
+
+block content
+	nav(class="mb-m")
+		a(href="/") < Back to PokeDex
+	include mixins/pokemonCard
+	+pokemonCard(pokemon)

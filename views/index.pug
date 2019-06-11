@@ -6,7 +6,7 @@ block content
 		form(action="")
 			div(class="form-row mb-m")
 				label(class="form-label mr-m") Name
-				input(type="text", name="name", value="#{filter.name || ''}")
+				input(type="text", name="name", value=(filter.name || ''))
 			div(class="form-row mb-m")
 				label(class="form-label mr-m") Type
 				div
@@ -81,40 +81,7 @@ block content
 				button(type="submit", class="form-submit-btn mr-m") Search
 				button(type="button", class="form-reset-btn mr-m", onclick="location.href='/?'") Clear
 	div(class="pokemon-list")
+		include mixins/pokemonCard
 		each pokemon in pokemons
-			div(class="pokemon-card pokemon-card--" + pokemon.types[0], data-legendary=pokemon.legendary)
-				div(class="pokemon-card-info")
-					div(class="pokemon-card-id")
-						span= "#" + pokemon.id
-						div(class="pokemon-card-image-wrapper float-right")
-							img(class="pokemon-card-image", src="./images/pokemons/" + pokemon.id + ".png")
-					h3(class="pokemon-card-title")
-						span= pokemon.name
-					div(class="pokemon-card-type-list") 
-						each pokemon_type in pokemon.types
-							span(class="pokemon-card-type pokemon-card-type--" + pokemon_type)= pokemon_type
-				table(class="pokemon-card-stats")
-					tr
-						td(class="pokemon-card-stats-label")
-							b ❤️HP
-						td(class="pokemon-card-stats-value")= pokemon.hp
-					tr
-						td(class="pokemon-card-stats-label") 
-							b ⚔️Attack
-						td(class="pokemon-card-stats-value")= pokemon.attack
-					tr
-						td(class="pokemon-card-stats-label") 
-							b 🛡️Defense
-						td(class="pokemon-card-stats-value")= pokemon.defense
-					tr
-						td(class="pokemon-card-stats-label") 
-							b 💎Special Attack
-						td(class="pokemon-card-stats-value")= pokemon.sp_attack
-					tr
-						td(class="pokemon-card-stats-label") 
-							b 📿Special Defense
-						td(class="pokemon-card-stats-value")= pokemon.sp_defense
-					tr
-						td(class="pokemon-card-stats-label") 
-							b ⚡ Speed
-						td(class="pokemon-card-stats-value")= pokemon.speed
+			a(href="/info/"+pokemon.id, class="pokemon-card-link")
+				+pokemonCard(pokemon)
