@@ -7,6 +7,14 @@ a {
 	color: #00b7ff;
 }
 
+.d-block {
+	display: block;
+}
+
+.d-inline-block {
+	display: inline-block;
+}
+
 .float-left {
 	float: left;
 }
@@ -46,12 +54,12 @@ a {
 .form-label {
 	display: inline-block;
 	width: 200px;
-  font-weight: bold;
-  flex-shrink: 0;
+	font-weight: bold;
+	flex-shrink: 0;
 }
 
 .toggle-input {
-  display: inline-block;
+	display: inline-block;
 }
 
 .toggle-input input[type="radio"],
@@ -87,6 +95,10 @@ a {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+}
+
+.pokemon-card-link {
+	text-decoration: none;
 }
 
 .pokemon-card {
@@ -230,6 +242,8 @@ a {
 
 .pokemon-card .pokemon-card-title {
 	margin: 0.5rem 0;
+	margin-right: 60px; /* So that it does not overlap with the pokemon avatar icon */
+	word-break: break-word;
 }
 
 .pokemon-card .pokemon-card-stats {
