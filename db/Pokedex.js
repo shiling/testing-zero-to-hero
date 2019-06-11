@@ -11,6 +11,7 @@ const Pokemon = require("../models/Pokemon")
  */
 function prepareUpdateObject(o) {
 	let update = _.pick(o, ["name", "types", "hp", "attack", "defense", "sp_attack", "sp_defense", "speed", "generation", "legendary"])
+	update.types = JSON.stringify(update.types)
 	let ts = new Date().getTime()
 	update.created_at = update.created_at || ts
 	update.updated_at = ts
@@ -26,7 +27,7 @@ function createPokemonFromRecord(o) {
 	let pokemon = new Pokemon()
 	if (o.id) pokemon.setId(o.id)
 	if (o.name) pokemon.setName(o.name)
-	if (o.types) pokemon.setTypes(o.types)
+	if (o.types) pokemon.setTypes(JSON.parse(o.types))
 	if (o.hp) pokemon.setHp(o.hp)
 	if (o.attack) pokemon.setAttack(o.attack)
 	if (o.defense) pokemon.setDefense(o.defense)
@@ -73,10 +74,8 @@ class Pokedex {
 					useNullAsDefault: true // sqlite does not support setting default values
 				})
 
-				// CREATE TABLE
-				this.createTable()
-					.then(resolve)
-					.catch(reject)
+				return resolve()
+				
 			} catch (err) {
 				return reject(err)
 			}
@@ -94,34 +93,6 @@ class Pokedex {
 			})
 		})
 	}
-
-	createTable() {
-		return this.knex.schema.hasTable(this.table).then((exists) => {
-			if (exists) {
-				return Promise.resolve()
-			} else {
-				return this.knex.schema.createTable(this.table, function(table) {
-					table.increments("id")
-					table.string("name").unique()
-					table.json("types")
-					table.integer("hp")
-					table.integer("attack")
-					table.integer("defense")
-					table.integer("sp_attack")
-					table.integer("sp_defense")
-					table.integer("speed")
-					table.integer("generation")
-					table.boolean("legendary")
-					table.timestamps()
-				})
-			}
-		})
-	}
-
-	dropTable() {
-		return this.knex.schema.dropTableIfExists(this.table)
-	}
-
 	save(o) {
 		return new Promise((resolve, reject) => {
 			try {
@@ -133,10 +104,6 @@ class Pokedex {
 				if (o.id) {
 					getPokemon = this.knex(this.table)
 						.where("id", o.id)
-						.select()
-				} else if (o.name) {
-					getPokemon = this.knex(this.table)
-						.where("name", o.name)
 						.select()
 				} else {
 					getPokemon = Promise.resolve([])
@@ -153,7 +120,6 @@ class Pokedex {
 									o.setId(id) // update the id
 								})
 						} else {
-							// update pokemon
 							return this.knex(this.table)
 								.update(prepareUpdateObject(o))
 								.where({ id: o.id })
@@ -291,6 +257,22 @@ class Pokedex {
 			}
 		})
 	}
+
+	deleteAll() {
+		return new Promise((resolve, reject) => {
+			try {
+				this.knex(this.table)
+					.delete()
+					.then(() => {
+						return resolve()
+					})
+					.catch(reject)
+			} catch (err) {
+				return reject(err)
+			}
+		})
+	}
+
 }
 
 module.exports = Pokedex
