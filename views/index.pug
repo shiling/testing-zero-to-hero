@@ -83,5 +83,5 @@ block content
 	div(class="pokemon-list")
 		include mixins/pokemonCard
 		each pokemon in pokemons
-			a(href="/info/"+pokemon.id, class="pokemon-card-link")
+			a(href="/pokemon/"+pokemon.id, class="pokemon-card-link")
 				+pokemonCard(pokemon)

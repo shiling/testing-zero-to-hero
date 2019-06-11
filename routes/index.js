@@ -53,7 +53,7 @@ router.get("/", async function(req, res, next) {
 
 })
 
-router.get("/info/:id", async function(req, res, next) {
+router.get("/pokemon/:id", async function(req, res, next) {
 
 	let pokemon = await pokedex.get(req.params.id)
 
@@ -62,7 +62,7 @@ router.get("/info/:id", async function(req, res, next) {
 		next(new Error("Pokemon not found"))
 	}
 
-	res.render("pokemonCard", {
+	res.render("pokemonInfo", {
 		title: "Pokedex - " + pokemon.name,
 		pokemon: pokemon
 	})
