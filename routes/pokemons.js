@@ -39,4 +39,46 @@ router.get("/", function(req, res, next) {
 		.catch(next) // pass errors to expressjs to handle
 })
 
+/* ADD a pokemon */
+router.post("/add", function(req, res, next) {
+	
+	let pokemon = new Pokemon(req.body)
+		
+	pokedex
+		.save(pokemon)
+		.then(() => {
+			res.send(pokemon)
+		})
+		.catch(next)
+})
+
+/* UPDATE a pokemon */
+router.post("/:id/update", function(req, res, next) {
+
+	let pokemon = new Pokemon(req.body)
+	pokemon.setId(req.params.id)
+
+	pokedex
+		.save(pokemon)
+		.then(() => {
+			res.send(pokemon)
+		})
+		.catch(next)
+
+})
+
+/* DELETE a pokemon */
+router.post("/:id/delete", function(req, res, next) {
+	let id = req.params.id
+
+	pokedex
+		.delete(id)
+		.then(() => {
+			res.statusCode = 204
+			res.send()
+		})
+		.catch(next)
+
+})
+
 module.exports = router
