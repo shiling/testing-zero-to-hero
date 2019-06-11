@@ -166,7 +166,6 @@ class Pokemon {
 
 	setLegendary(value) {
 		if (typeof value !== "boolean") {
-			console.log(value)
 			throw new Error("legendary must be a boolean, got " + typeof value + " instead")
 		}
 		this._legendary = value
