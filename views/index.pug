@@ -11,6 +11,9 @@ block content
 				label(class="form-label mr-m") Type
 				div
 					label(class="toggle-input")
+						input(type="checkbox", name="types", value="Normal", checked=(filter.types.includes("Normal"))) 
+						span Normal
+					label(class="toggle-input")
 						input(type="checkbox", name="types", value="Grass", checked=(filter.types.includes("Grass"))) 
 						span Grass
 					label(class="toggle-input")
