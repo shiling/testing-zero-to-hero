@@ -1,3 +1,5 @@
+/* GLOBALS */
+
 body {
 	padding: 50px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,6 +8,8 @@ body {
 a {
 	color: #00b7ff;
 }
+
+/* UTILITIES */
 
 .d-block {
 	display: block;
@@ -38,6 +42,8 @@ a {
 .mb-m {
 	margin-bottom: 1rem;
 }
+
+/* FORM */
 
 .search-box {
 	background: #eceff1;
@@ -90,12 +96,17 @@ a {
 	padding: 0.5rem;
 }
 
+/* POKEMON LIST */
+
 .pokemon-list {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: center;
 }
+
+/* POKEMON CARD */
 
 .pokemon-card-link {
 	text-decoration: none;
@@ -112,7 +123,7 @@ a {
 	padding: 1rem;
 	margin: 0 1rem 1rem 0;
 
-	border: 1px solid #e0e0e0;
+	border: 5px solid #bdbdbd;
 	border-radius: 10px;
 	background-color: #eeeeee;
 	color: black;
@@ -236,8 +247,8 @@ a {
 }
 
 .pokemon-card[data-legendary] {
-	box-shadow: 0 0 4px 4px #fdd835;
-	border: 1px solid #fdd835;
+	/* box-shadow: 0 0 4px 4px #fdd835; */
+	border-color: #fdd835;
 }
 
 .pokemon-card .pokemon-card-title {
