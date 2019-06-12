@@ -10,54 +10,10 @@ block content
 			div(class="form-row mb-m")
 				label(class="form-label mr-m") Type
 				div
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Normal", checked=(filter.types.includes("Normal"))) 
-						span Normal
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Grass", checked=(filter.types.includes("Grass"))) 
-						span Grass
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Poison", checked=(filter.types.includes("Poison"))) 
-						span Poison
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Fire", checked=(filter.types.includes("Fire"))) 
-						span Fire
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Bug", checked=(filter.types.includes("Bug"))) 
-						span Bug
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Flying", checked=(filter.types.includes("Flying"))) 
-						span Flying
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Fairy", checked=(filter.types.includes("Fairy"))) 
-						span Fairy
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Ground", checked=(filter.types.includes("Ground"))) 
-						span Ground
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Rock", checked=(filter.types.includes("Rock"))) 
-						span Rock
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Steel", checked=(filter.types.includes("Steel"))) 
-						span Steel
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Fighting", checked=(filter.types.includes("Fighting"))) 
-						span Fighting
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Ghost", checked=(filter.types.includes("Ghost"))) 
-						span Ghost
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Ice", checked=(filter.types.includes("Ice"))) 
-						span Ice
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Electric", checked=(filter.types.includes("Electric"))) 
-						span Electric
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Dark", checked=(filter.types.includes("Dark"))) 
-						span Dark
-					label(class="toggle-input")
-						input(type="checkbox", name="types", value="Dragon", checked=(filter.types.includes("Dragon"))) 
-						span Dragon
+					each pokemonType in ["Normal", "Grass", "Poison", "Fire", "Bug", "Flying", "Fairy", "Ground", "Rock", "Steel", "Fighting", "Ghost", "Ice", "Electric", "Dark", "Dragon"]
+						label(class="toggle-input")
+							input(type="checkbox", name="types", value=pokemonType, checked=(filter.types.includes(pokemonType))) 
+							span= pokemonType
 			div(class="form-row mb-m")
 				label(class="form-label mr-m") Generation
 				select(name="generation")
