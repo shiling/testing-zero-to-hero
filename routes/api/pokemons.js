@@ -17,7 +17,8 @@ router.get("/", function(req, res, next) {
 		filter.name = req.query.name
 	}
 
-	// type
+	// types
+	
 
 	// generation
 	if (req.query.generation) {
@@ -50,6 +51,18 @@ router.post("/add", function(req, res, next) {
 			res.send(pokemon)
 		})
 		.catch(next)
+})
+
+/* GET a pokemon */
+router.get("/:id", function(req, res, next) {
+
+	pokedex
+		.get(req.params.id)
+		.then((pokemon) => {
+			res.send(pokemon)
+		})
+		.catch(next)
+
 })
 
 /* UPDATE a pokemon */
