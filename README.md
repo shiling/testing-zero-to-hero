@@ -13,7 +13,7 @@ In this lab, we're going to write automate tests for this application:
 -   Chapter 1: Unit testing with [Mocha](https://mochajs.org) and [Chai](https://www.chaijs.com/)
 -   Chapter 2: API testing with [Chai-http](http://dareid.github.io/chakram/)
 -   Chapter 3: End-to-end acceptance testing with [webdriver.io](https://webdriver.io/) and [UI-licious](https://uilicious.com)
--   Chapter 4: Integrating with CI/CD and practicing TDD
+<!-- -   Chapter 4: Integrating with CI/CD and practicing TDD -->
 
 ## Setup
 
@@ -494,6 +494,14 @@ We can use GUI automation tools to automate acceptance testing.
 
 The easiest way to test your web application is with UI-licious. ;)
 
+👉 Start the server:
+
+```
+npm start
+```
+
+The application will be loaded at [http://localhost:3000](http://localhost:3000).
+
 👉 Using ngrok to temporarily expose your localhost application:
 
 ```
@@ -596,7 +604,7 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 > TODO
 
-## Chapter 4: Integrating with CI / CD, and practicing TDD
+<!-- ## Chapter 4: Integrating with CI / CD, and practicing TDD
 
 #### 💎 Execise 4.1:
 
@@ -626,7 +634,7 @@ Netlify CI/CD is now configured!
 
 👉 Make some changes to the application, e.g. add a "Edit Pokemon" form or a "Add Pokemon" form and some tests
 
-👉 Create a PR
+👉 Create a PR -->
 
 ---
 
