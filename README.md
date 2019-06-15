@@ -37,16 +37,16 @@ We are going to setup Mocha to run our tests.
 👉 Install [Mocha](https://mochajs.org).
 
 ```
-npm install mocha --save
+npm install mocha --save-dev
 ```
 
 👉 Set up your `test` script in `package.json` like this:
 
 ```json
 {
-    "scripts": {
-        "test": "mocha \"./tests/*.js\" --exit"
-    }
+	"scripts": {
+		"test": "mocha \"./tests/*.js\" --exit"
+	}
 }
 ```
 
@@ -80,9 +80,9 @@ const Pokemon = require("../models/Pokemon")
 
 ```javascript
 describe("Pokemon", function() {
-    describe("#setName()", function() {
-        // We'll write our test cases here
-    })
+	describe("#setName()", function() {
+		// We'll write our test cases here
+	})
 })
 ```
 
@@ -90,12 +90,12 @@ describe("Pokemon", function() {
 
 ```javascript
 describe("Pokemon", function() {
-    describe("#setName()", function() {
-        // Test Case 1
-        it("should set name when passed non-empty string", function() {
-            // Steps to perform your test here:
-        })
-    })
+	describe("#setName()", function() {
+		// Test Case 1
+		it("should set name when passed non-empty string", function() {
+			// Steps to perform your test here:
+		})
+	})
 })
 ```
 
@@ -128,14 +128,14 @@ const assert = require("assert")
 ```javascript
 // Test Case 1
 it("should set name when passed non-empty string", function() {
-    // Steps to perform your test here:
+	// Steps to perform your test here:
 
-    // Create a pokemon, and set the name
-    let pokemon = new Pokemon()
-    pokemon.setName("Pikachu")
+	// Create a pokemon, and set the name
+	let pokemon = new Pokemon()
+	pokemon.setName("Pikachu")
 
-    // After setting the name, we must make sure that the name is "Pikachu"
-    assert.equal(pokemon.name, "Pikachu")
+	// After setting the name, we must make sure that the name is "Pikachu"
+	assert.equal(pokemon.name, "Pikachu")
 })
 ```
 
@@ -161,6 +161,12 @@ Chai also supports a lot of [plugins](https://www.chaijs.com/plugins/) to help y
 -   [chai-doge](https://www.chaijs.com/plugins/chai-doge/) wow, very doge-style language chains for Chai, much silly
 
 #### Exercise 1.2: Using `should` syntax
+
+👉 Install Chai:
+
+```
+npm install chai --save-dev
+```
 
 In this exercise, let's try out Chai's `should` syntax.
 
@@ -216,14 +222,14 @@ When running asynchronous tests with callbacks, you need tell Mocha when the tes
 
 ```javascript
 it("should make sandwich", function(done) {
-    chef.makeSandwich(function(err, sandwich) {
-        if (err) {
-            done(err)
-        } else {
-            expect(sandwich).to.exist
-            done()
-        }
-    })
+	chef.makeSandwich(function(err, sandwich) {
+		if (err) {
+			done(err)
+		} else {
+			expect(sandwich).to.exist
+			done()
+		}
+	})
 })
 ```
 
@@ -231,14 +237,14 @@ To handle promises, you can simply return the promise, and Mocha will automatial
 
 ```javascript
 it("should make sandwich", function() {
-    return chef
-        .makeSandwich()
-        .then((sandwich) => {
-            expect(sandwich).to.exist
-        })
-        .catch(function(err) {
-            throw err
-        })
+	return chef
+		.makeSandwich()
+		.then((sandwich) => {
+			expect(sandwich).to.exist
+		})
+		.catch(function(err) {
+			throw err
+		})
 })
 ```
 
@@ -246,8 +252,8 @@ Alternatively, you can use the `async/await` syntax, which can make the test nea
 
 ```javascript
 it("should make sandwich", async function() {
-    const sandwich = await chef.makeSandwich
-    expect(sandwich).to.exist
+	const sandwich = await chef.makeSandwich
+	expect(sandwich).to.exist
 })
 ```
 
@@ -295,7 +301,7 @@ Hint: Just drop the table, and create it again with the code below:
 
 ```javascript
 return pokedex.dropTable().then(() => {
-    return pokedex.createTable()
+	return pokedex.createTable()
 })
 ```
 
@@ -340,7 +346,7 @@ We're going to use the [`chai-http`](https://www.chaijs.com/plugins/chai-http/) 
 👉 Install `chai-http`
 
 ```
-npm install chai-http --save
+npm install chai-http --save-dev
 ```
 
 👉 Import and register the plugin
@@ -379,13 +385,13 @@ You can do this yourself using hooks, like this:
 const app = require("../app")
 
 beforeEach(function(done) {
-    // start the server before running the tests
-    server = app.listen(3000, done)
+	// start the server before running the tests
+	server = app.listen(3000, done)
 })
 
 afterEach(function(done) {
-    // close the server after running the tests
-    server.close(done)
+	// close the server after running the tests
+	server.close(done)
 })
 ```
 
@@ -402,55 +408,57 @@ In this application, we use [knex](https://knexjs.org) to perform queries, migra
 The migration files are already setup under `/migration` which runs the scripts to rollback and to update the schema of our database.
 
 For example:
+
 ```javascript
 exports.up = function(knex, Promise) {
-    return knex.schema
-        .createTable("pokemons", function(table) {
-            table.increments("id")
-            table.string("name").unique()
-            table.json("types")
-            table.integer("hp")
-            table.integer("attack")
-            table.integer("defense")
-            table.integer("sp_attack")
-            table.integer("sp_defense")
-            table.integer("speed")
-            table.integer("generation")
-            table.boolean("legendary")
-            table.timestamps()
-        })
+	return knex.schema.createTable("pokemons", function(table) {
+		table.increments("id")
+		table.string("name").unique()
+		table.json("types")
+		table.integer("hp")
+		table.integer("attack")
+		table.integer("defense")
+		table.integer("sp_attack")
+		table.integer("sp_defense")
+		table.integer("speed")
+		table.integer("generation")
+		table.boolean("legendary")
+		table.timestamps()
+	})
 }
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists("pokemons")
+	return knex.schema.dropTableIfExists("pokemons")
 }
 ```
 
-The seed files for each environment are already setup under `/seeds` which runs scripts to seed the database in the respective environments. The seed files are ran in alphabetically order. `1_seed_pokemon.js` runs a script to read the `Pokemon.csv` in the same folder and populate the database. 
-- For the production environment, we are adding 800 pokemons from Generation 1 to 6. 
-- For the test environment, we are adding just 166 pokemons from Generation 1, which contains 6 legendary pokemons.
+The seed files for each environment are already setup under `/seeds` which runs scripts to seed the database in the respective environments. The seed files are ran in alphabetically order. `1_seed_pokemon.js` runs a script to read the `Pokemon.csv` in the same folder and populate the database.
+
+-   For the production environment, we are adding 800 pokemons from Generation 1 to 6.
+-   For the test environment, we are adding just 166 pokemons from Generation 1, which contains 6 legendary pokemons.
 
 The configurations for different environments are defined in `knexfile.js`.
 
 👉 Add `process.env.NODE_ENV = "test"` to the start of your test to ensure that the test configurations are always selected when you run the test.
 
 👉 To reset and seed the database between tests, add these hooks to your tests:
+
 ```javascript
 let knex
 
 before(async function() {
-    const config = require("../knexfile.js")[process.env.NODE_ENV]
-    knex = require("knex")(config) // connect
-    await knex.migrate.rollback(true) // rollback the schema, this will also destroy all data
-    await knex.migrate.latest() // migrate the schema to the latest version
+	const config = require("../knexfile.js")[process.env.NODE_ENV]
+	knex = require("knex")(config) // connect
+	await knex.migrate.rollback(true) // rollback the schema, this will also destroy all data
+	await knex.migrate.latest() // migrate the schema to the latest version
 })
 
 beforeEach(async function() {
-    await knex.seed.run() // seed the test data
+	await knex.seed.run() // seed the test data
 })
 
 after(async function() {
-    await knex.destroy() // close the connection
+	await knex.destroy() // close the connection
 })
 ```
 
@@ -460,19 +468,20 @@ after(async function() {
 
 ### What is acceptance testing?
 
-A formal way of defining acceptance testing is to say that verifying that a software met business requirements. 
+A formal way of defining acceptance testing is to say that verifying that a software met business requirements.
 
-I think a better way and more __relatable__ way to describe acceptance testing is that:
+I think a better way and more **relatable** way to describe acceptance testing is that:
 
-Acceptance testing is verify that the application works for the __user__. 
+Acceptance testing is verify that the application works for the **user**.
 
 To perform acceptance testing, we need to simulate user stories, which should include:
-- An __objective__ that a user wants to achieve with the application, 
-- A series of actions that the user performs, which can be:
-    - And a __happy__ flow where a user performs valid actions
-        - with assertions to validate that the application state and view is updated correctly
-    - Or a __negative__ flow where a user makes mistake (it's very human to do so!)
-        - with assertions to validate that appropriate messages are shown to help the user recover from the error
+
+-   An **objective** that a user wants to achieve with the application,
+-   A series of actions that the user performs, which can be:
+    -   And a **happy** flow where a user performs valid actions
+        -   with assertions to validate that the application state and view is updated correctly
+    -   Or a **negative** flow where a user makes mistake (it's very human to do so!)
+        -   with assertions to validate that appropriate messages are shown to help the user recover from the error
 
 ### Exercise 3.1: Testing with UI-licious
 
@@ -481,10 +490,12 @@ We can use GUI automation tools to automate acceptance testing.
 The easiest way to test your web application is with UI-licious. ;)
 
 👉 Using ngrok to temporarily expose your localhost application:
+
 ```
 npm install ngrok -g
 ngrok http 3000
 ```
+
 This will install and then start ngrok to connect to your localhost application at port 3000. ngrok will provide a url to allow public access to your localhost application, which as seen in the screenshot is `http://73535685.ngrok.io`.
 
 ![ngrok](./docs/ngrok.png)
@@ -492,24 +503,25 @@ This will install and then start ngrok to connect to your localhost application 
 👉 Go to https://snippets.uilicious.com/ to access the free edition of UI-licious. It's like CodePen, but for testing.
 
 👉 Write a test to:
-- Search for "Pikachu"
-- Validate that the results shows one Pokemon
-- Validate that the result is a Pikachu
+
+-   Search for "Pikachu"
+-   Validate that the results shows one Pokemon
+-   Validate that the result is a Pikachu
 
 ### Doing it yourself
 
 ### The WebDriver Protocol and Selenium
 
-We can use GUI automation tools to automate acceptance testing. In the case for browser applications, the standard is to use the WebDriver protocol which is the specs defined by WC3 for browser automation. 
+We can use GUI automation tools to automate acceptance testing. In the case for browser applications, the standard is to use the WebDriver protocol which is the specs defined by WC3 for browser automation.
 Browser vendors implement drivers that support the protocol according to the specs. Or at least they are supposed to. But like printer drivers, vendors can't seem to follow the spec, and everyone seems to be doing their own thing, so there's a lot of missing implementations and inconsistencies.
 
 ...list of browser drivers...
 
-What is __Selenium__?
+What is **Selenium**?
 
-Selenium ≠ Webdriver. (Just like Web ≠ Internet.) 
+Selenium ≠ Webdriver. (Just like Web ≠ Internet.)
 
-Going along with the printer driver analogy, the Selenium WebDriver is like the System Print Dialog, it is an interface to the browser automation drivers. It is a library that provides a layer of abstraction so that it's easier for you to connect to different browsers (just like how your computer can print to printers from different vendors). 
+Going along with the printer driver analogy, the Selenium WebDriver is like the System Print Dialog, it is an interface to the browser automation drivers. It is a library that provides a layer of abstraction so that it's easier for you to connect to different browsers (just like how your computer can print to printers from different vendors).
 
 Don't get this confused with the Selenium Grid, and Selenium IDE, which are other projects:
 
@@ -519,33 +531,55 @@ The Selenium Grid is a server that manages the pool of connections of browser se
 
 The Selenium IDE is a Chrome and Firefox extension that is basically a macro-recording tool.
 
-What is __Selenium__ again?
+What is **Selenium** again?
 
 ![What is Selenium](./docs/what_is_selenium.png)
 
-Exactly as it is written on the Selenium website. Selenium is a tool for automating the browser. It is not particulary designed for testing, while that is the primary use case, but it can be use for doing other things like web scrapping. 
+Exactly as it is written on the Selenium website. Selenium is a tool for automating the browser. It is not particulary designed for testing, while that is the primary use case, but it can be use for doing other things like web scrapping.
 
-That said, Selenium really isn't the best tool for testing, it's like using a butter knife for a surgery - it works, kind of, but it's really unweldy. 
+That said, Selenium really isn't the best tool for testing, it's like using a butter knife for a surgery - it works, kind of, but it's really unweldy.
 
 There's a lot of frameworks built on top of Selenium that help make testing easier:
-- Javascript testing libraries:
-    - [UI-licious](https://uilicious.com)
-    - [Webdriver.io](https://webdriver.io/)
-    - [NightmareJS](https://github.com/segmentio/nightmare)
-    - [CodeceptJS](https://codecept.io/)
+
+-   Javascript testing libraries:
+    -   [UI-licious](https://uilicious.com)
+    -   [Webdriver.io](https://webdriver.io/)
+    -   [NightmareJS](https://github.com/segmentio/nightmare)
+    -   [CodeceptJS](https://codecept.io/)
 
 ### Exercise 3.2: Testing with webdriver.io
 
-#### Setting up webdriver
+#### Setting up selenium 
 
-👉 Install @wdio/cli
+👉 Install selenium-standalone
+
 ```
-npm install @wdio/cli
+npm install selenium-standalone --save-dev
 ```
 
-#### Setting up the selenium-standalone
+👉 Run the following to install the necessary drivers
+```
+./node_modules/.bin/selenium-standalone install
+```
 
+#### Setting up webdriverio 
 
+👉 Install wdio which is the test runner for webdriver.io
+
+```
+npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-standalone-service @wdio/spec-reporter @wdio/sync selenium-standalone --save-dev
+```
+
+👉 Copy "wdio.conf.sample.js" to "wdio.conf.js"
+
+👉 Create "/tests/3_e2e_tests" folder for e2e tests.
+
+#### Writing your test
+
+👉 Same as the previous exercise, write a test to:
+- Search for "Pikachu"
+- Validate that there is one result
+- Validate that there is the first result has the title "Pikachu"
 
 ### Exercise 3.3: Visual Testing
 
@@ -556,16 +590,18 @@ npm install @wdio/cli
 We'll be using [Netlify](https://netlify.com) to deploy our application. Netlify comes with CI/CD built in, one of the cool features they have is that when every you push a change to a branch or create a PR, Netlify will deploy a "staging" URL for you to preview the changes.
 
 Install Netlify:
+
 ```
 npm install netlify-cli -g
 ```
 
 Login to Netlify (You need to have a Netlify account)
+
 ```
 netlify login
 ```
 
-Initialise your Netlify website. 
+Initialise your Netlify website.
 
 ```
 netlify init
@@ -573,62 +609,7 @@ netlify init
 
 Netlify CI/CD is now configured!
 
-### Exercise 4.1: 
-
-            - use standalone when you want to DIY and build your own testing library (runs all the commands asynchronous)
-            - use wdio which is a test runner to help you organise and run your test just like Mocha tests (all the commands are synchronous)
-        - install webdriverio cli
-            ```
-            npm install @wdio/cli
-            ```
-        - run the configuration help
-            It can be really complicated to setup webdriver, we are just going to use the configuration CLI to help us with this.
-            ```
-            ./node_modules/.bin/wdio config
-            ```
-            - Where should your tests be launched
-                - local
-            - Where is your automation backend located?
-                - on my local machine
-            - Which framework do you want to use?
-                - mocha
-            - Do you want to run WebdriverIO commands synchronous or asynchronous?
-                - sync
-            - Where are your test specs located?
-                - ./tests_solutions/e2etests/*/./js
-            - Which reporter do you want to use?
-                - spec
-            - Do you want to add a service to your test setup?
-                - selenium-standalone (use the space button to select)
-            - What is the base url?
-                - http://localhost:3000
-            - if you are on mac and you get the error  
-            ```
-            xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
-            ```
-            You will need to install the XCommand Command line tools (which requires python 2.7 not 3.x), or otherwise follow this instructions to install the node-gyp dependency https://github.com/nodejs/node-gypls
-            - wdio.conf.js is now created, we can run tests with the command `wdio wdio.conf.js`
-
-    - setting up selenium server
-        - what is selenium
-        - installing selenium-standalone globally
-            ```
-            npm install selenium-standalone -g
-            ```
-        - istalling the browser webdrivers
-            ```
-            selenium-standalone install --config=./config/seleniumConfig.js
-            ```
-            Add screenshot
-        - starting the selenium server
-            ```
-            selenium-standalone start --config=./config/seleniumConfig.js
-            ```
-    - chromedriver
-        - npm install wdio-chromedriver-service --save-dev
-        - npm install chromedriver --save-dev
-    - create a new folder for your end to end tests
-- exercise 1
+### Exercise 4.1:
 
 ## What is a good test?
 
@@ -649,13 +630,13 @@ const Pokemon = require("../models/Pokemon")
 const assert = require("assert")
 
 describe("Pokemon", function() {
-    describe("#setName()", function() {
-        it("should set name when value is present", function() {
-            var pokemon = new Pokemon()
-            pokemon.setName("Pikachu")
-            assert.equal(pokemon.name, "Pikachu")
-        })
-    })
+	describe("#setName()", function() {
+		it("should set name when value is present", function() {
+			var pokemon = new Pokemon()
+			pokemon.setName("Pikachu")
+			assert.equal(pokemon.name, "Pikachu")
+		})
+	})
 })
 ```
 
@@ -663,9 +644,9 @@ describe("Pokemon", function() {
 
 ```javascript
 it("should set name when value is present", function() {
-    var pokemon = new Pokemon()
-    pokemon.setName("Pikachu")
-    pokemon.should.have.property("name", "Pikachu")
+	var pokemon = new Pokemon()
+	pokemon.setName("Pikachu")
+	pokemon.should.have.property("name", "Pikachu")
 })
 ```
 
@@ -673,9 +654,9 @@ it("should set name when value is present", function() {
 
 ```javascript
 it("should set name when value is present", function() {
-    var pokemon = new Pokemon()
-    pokemon.setName("Pikachu")
-    expect(pokemon.name).to.equal("Pikachu")
+	var pokemon = new Pokemon()
+	pokemon.setName("Pikachu")
+	expect(pokemon.name).to.equal("Pikachu")
 })
 ```
 
@@ -683,10 +664,10 @@ it("should set name when value is present", function() {
 
 ```javascript
 it("throw error when value is empty", function() {
-    assert.throws(function() {
-        var pokemon = new Pokemon()
-        pokemon.setName("")
-    }, "name cannot be empty")
+	assert.throws(function() {
+		var pokemon = new Pokemon()
+		pokemon.setName("")
+	}, "name cannot be empty")
 })
 ```
 
@@ -698,24 +679,24 @@ const Pokedex = require("../db/Pokedex")
 const expect = require("chai").expect
 
 describe("Pokedex", function() {
-    // connect to the database
-    let pokedex = new Pokedex()
-    pokedex.connect("./storage/test.sqlite3")
+	// connect to the database
+	let pokedex = new Pokedex()
+	pokedex.connect("./storage/test.sqlite3")
 
-    describe("#save()", function() {
-        it("should add pokemon", async function() {
-            // Create a Pokemon
-            let pokemon = new Pokemon()
-            pokemon.setName("Pikachu")
-            pokemon.setTypes(["Electric"])
+	describe("#save()", function() {
+		it("should add pokemon", async function() {
+			// Create a Pokemon
+			let pokemon = new Pokemon()
+			pokemon.setName("Pikachu")
+			pokemon.setTypes(["Electric"])
 
-            // Save to the Pokedex
-            await pokedex.save(pokemon)
+			// Save to the Pokedex
+			await pokedex.save(pokemon)
 
-            // Validate that the pokemon now has an id
-            expect(pokemon.id).to.be.a("number")
-        })
-    })
+			// Validate that the pokemon now has an id
+			expect(pokemon.id).to.be.a("number")
+		})
+	})
 })
 ```
 
@@ -723,23 +704,23 @@ describe("Pokedex", function() {
 
 ```javascript
 describe("#save_callback()", function() {
-    it("should add pokemon", function(done) {
-        // Create a Pokemon
-        let pokemon = new Pokemon()
-        pokemon.setName("Pikachu")
-        pokemon.setTypes(["Electric"])
+	it("should add pokemon", function(done) {
+		// Create a Pokemon
+		let pokemon = new Pokemon()
+		pokemon.setName("Pikachu")
+		pokemon.setTypes(["Electric"])
 
-        // Save to the Pokedex
-        pokedex.save_callback(pokemon, function(err) {
-            if (err) {
-                return done(err)
-            }
+		// Save to the Pokedex
+		pokedex.save_callback(pokemon, function(err) {
+			if (err) {
+				return done(err)
+			}
 
-            // Validate that the pokemon now has an id
-            expect(pokemon.id).to.be.a("number")
-            return done()
-        })
-    })
+			// Validate that the pokemon now has an id
+			expect(pokemon.id).to.be.a("number")
+			return done()
+		})
+	})
 })
 ```
 
@@ -747,23 +728,23 @@ describe("#save_callback()", function() {
 
 ```javascript
 describe("Pokedex", function() {
-    let pokedex = new Pokedex()
+	let pokedex = new Pokedex()
 
-    before(function() {
-        return pokedex.connect("./storage/test.sqlite3")
-    })
+	before(function() {
+		return pokedex.connect("./storage/test.sqlite3")
+	})
 
-    beforeEach(function() {
-        return pokedex.dropTable().then(() => {
-            return pokedex.createTable()
-        })
-    })
+	beforeEach(function() {
+		return pokedex.dropTable().then(() => {
+			return pokedex.createTable()
+		})
+	})
 
-    after(function() {
-        return pokedex.close()
-    })
+	after(function() {
+		return pokedex.close()
+	})
 
-    // Test cases...
+	// Test cases...
 })
 ```
 
@@ -771,22 +752,22 @@ describe("Pokedex", function() {
 
 ```javascript
 it("should retrieve all pokemons", function() {
-    // promise
-    return chai
-        .request("http://localhost:3000")
-        .get("/pokemons")
-        .send()
-        .then(function(res) {
-            expect(res).to.have.status(200)
-            expect(res).to.have.header("content-type", "application/json; charset=utf-8")
-            expect(res).to.be.json
-            expect(res.body).to.be.a("Array")
-            expect(res.body).to.have.lengthOf(166) // 166 pokemons
-            expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
-        })
-        .catch(function(err) {
-            throw err
-        })
+	// promise
+	return chai
+		.request("http://localhost:3000")
+		.get("/pokemons")
+		.send()
+		.then(function(res) {
+			expect(res).to.have.status(200)
+			expect(res).to.have.header("content-type", "application/json; charset=utf-8")
+			expect(res).to.be.json
+			expect(res.body).to.be.a("Array")
+			expect(res.body).to.have.lengthOf(166) // 166 pokemons
+			expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
+		})
+		.catch(function(err) {
+			throw err
+		})
 })
 ```
 
@@ -794,40 +775,48 @@ it("should retrieve all pokemons", function() {
 
 ```javascript
 describe("API tests", function() {
-
-    const app = require("../app")
-    describe("/api/pokemon/get", function() {
-        it("should retrieve all pokemons", function() {
-            // promise
-            return chai
-                .request(app)
-                .get("/api/pokemons")
-                .send()
-                .then(function(res) {
-                    expect(res).to.have.status(200)
-                    expect(res).to.have.header("content-type", "application/json; charset=utf-8")
-                    expect(res).to.be.json
-                    expect(res.body).to.be.a("Array")
-                    expect(res.body).to.have.lengthOf(166) // 166 pokemons
-                    expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
-                })
-                .catch(function(err) {
-                    throw err
-                })
-        })
-    })
-
+	const app = require("../app")
+	describe("/api/pokemon/get", function() {
+		it("should retrieve all pokemons", function() {
+			// promise
+			return chai
+				.request(app)
+				.get("/api/pokemons")
+				.send()
+				.then(function(res) {
+					expect(res).to.have.status(200)
+					expect(res).to.have.header("content-type", "application/json; charset=utf-8")
+					expect(res).to.be.json
+					expect(res.body).to.be.a("Array")
+					expect(res.body).to.have.lengthOf(166) // 166 pokemons
+					expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
+				})
+				.catch(function(err) {
+					throw err
+				})
+		})
+	})
 })
 ```
 
 #### Exercise 2.3
+```javascript
+// todo
+```
 
 #### Exercise 3.1
+```javascript
+// todo
+```
 
 #### Exercise 3.2
+```javascript
+// todo
+```
 
 #### Exercise 3.3
-
+```
+```
 
 ---
 
