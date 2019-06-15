@@ -47,9 +47,9 @@ npm install mocha --save-dev
 
 ```json
 {
-	"scripts": {
-		"test": "mocha \"./tests/*.js\" --exit"
-	}
+    "scripts": {
+        "test": "mocha \"./tests/*.js\" --exit"
+    }
 }
 ```
 
@@ -83,9 +83,9 @@ const Pokemon = require("../models/Pokemon")
 
 ```javascript
 describe("Pokemon", function() {
-	describe("#setName()", function() {
-		// We'll write our test cases here
-	})
+    describe("#setName()", function() {
+        // We'll write our test cases here
+    })
 })
 ```
 
@@ -93,12 +93,12 @@ describe("Pokemon", function() {
 
 ```javascript
 describe("Pokemon", function() {
-	describe("#setName()", function() {
-		// Test Case 1
-		it("should set name when passed non-empty string", function() {
-			// Steps to perform your test here:
-		})
-	})
+    describe("#setName()", function() {
+        // Test Case 1
+        it("should set name when passed non-empty string", function() {
+            // Steps to perform your test here:
+        })
+    })
 })
 ```
 
@@ -131,14 +131,14 @@ const assert = require("assert")
 ```javascript
 // Test Case 1
 it("should set name when passed non-empty string", function() {
-	// Steps to perform your test here:
+    // Steps to perform your test here:
 
-	// Create a pokemon, and set the name
-	let pokemon = new Pokemon()
-	pokemon.setName("Pikachu")
+    // Create a pokemon, and set the name
+    let pokemon = new Pokemon()
+    pokemon.setName("Pikachu")
 
-	// After setting the name, we must make sure that the name is "Pikachu"
-	assert.equal(pokemon.name, "Pikachu")
+    // After setting the name, we must make sure that the name is "Pikachu"
+    assert.equal(pokemon.name, "Pikachu")
 })
 ```
 
@@ -225,14 +225,14 @@ When running asynchronous tests with callbacks, you need tell Mocha when the tes
 
 ```javascript
 it("should make sandwich", function(done) {
-	chef.makeSandwich(function(err, sandwich) {
-		if (err) {
-			done(err)
-		} else {
-			expect(sandwich).to.exist
-			done()
-		}
-	})
+    chef.makeSandwich(function(err, sandwich) {
+        if (err) {
+            done(err)
+        } else {
+            expect(sandwich).to.exist
+            done()
+        }
+    })
 })
 ```
 
@@ -240,14 +240,14 @@ To handle promises, you can simply return the promise, and Mocha will automatial
 
 ```javascript
 it("should make sandwich", function() {
-	return chef
-		.makeSandwich()
-		.then((sandwich) => {
-			expect(sandwich).to.exist
-		})
-		.catch(function(err) {
-			throw err
-		})
+    return chef
+        .makeSandwich()
+        .then((sandwich) => {
+            expect(sandwich).to.exist
+        })
+        .catch(function(err) {
+            throw err
+        })
 })
 ```
 
@@ -255,8 +255,8 @@ Alternatively, you can use the `async/await` syntax, which can make the test nea
 
 ```javascript
 it("should make sandwich", async function() {
-	const sandwich = await chef.makeSandwich
-	expect(sandwich).to.exist
+    const sandwich = await chef.makeSandwich
+    expect(sandwich).to.exist
 })
 ```
 
@@ -304,7 +304,7 @@ Hint: Just drop the table, and create it again with the code below:
 
 ```javascript
 return pokedex.dropTable().then(() => {
-	return pokedex.createTable()
+    return pokedex.createTable()
 })
 ```
 
@@ -342,7 +342,7 @@ The application will be loaded at [http://localhost:3000](http://localhost:3000)
 
 Let's test the `GET /api/pokemons` API which lists the pokemons in the database, and allows you to search for pokemons by attributes.
 
-#### 💎 Execise 2.1
+#### 💎 Execise 2.1: Writing an API test
 
 We're going to use the [`chai-http`](https://www.chaijs.com/plugins/chai-http/) plugin which allows us to test http requests.
 
@@ -388,13 +388,13 @@ You can do this yourself using hooks, like this:
 const app = require("../app")
 
 beforeEach(function(done) {
-	// start the server before running the tests
-	server = app.listen(3000, done)
+    // start the server before running the tests
+    server = app.listen(3000, done)
 })
 
 afterEach(function(done) {
-	// close the server after running the tests
-	server.close(done)
+    // close the server after running the tests
+    server.close(done)
 })
 ```
 
@@ -414,24 +414,24 @@ For example:
 
 ```javascript
 exports.up = function(knex, Promise) {
-	return knex.schema.createTable("pokemons", function(table) {
-		table.increments("id")
-		table.string("name").unique()
-		table.json("types")
-		table.integer("hp")
-		table.integer("attack")
-		table.integer("defense")
-		table.integer("sp_attack")
-		table.integer("sp_defense")
-		table.integer("speed")
-		table.integer("generation")
-		table.boolean("legendary")
-		table.timestamps()
-	})
+    return knex.schema.createTable("pokemons", function(table) {
+        table.increments("id")
+        table.string("name").unique()
+        table.json("types")
+        table.integer("hp")
+        table.integer("attack")
+        table.integer("defense")
+        table.integer("sp_attack")
+        table.integer("sp_defense")
+        table.integer("speed")
+        table.integer("generation")
+        table.boolean("legendary")
+        table.timestamps()
+    })
 }
 
 exports.down = function(knex, Promise) {
-	return knex.schema.dropTableIfExists("pokemons")
+    return knex.schema.dropTableIfExists("pokemons")
 }
 ```
 
@@ -450,18 +450,18 @@ The configurations for different environments are defined in `knexfile.js`.
 let knex
 
 before(async function() {
-	const config = require("../knexfile.js")[process.env.NODE_ENV]
-	knex = require("knex")(config) // connect
-	await knex.migrate.rollback(true) // rollback the schema, this will also destroy all data
-	await knex.migrate.latest() // migrate the schema to the latest version
+    const config = require("../knexfile.js")[process.env.NODE_ENV]
+    knex = require("knex")(config) // connect
+    await knex.migrate.rollback(true) // rollback the schema, this will also destroy all data
+    await knex.migrate.latest() // migrate the schema to the latest version
 })
 
 beforeEach(async function() {
-	await knex.seed.run() // seed the test data
+    await knex.seed.run() // seed the test data
 })
 
 after(async function() {
-	await knex.destroy() // close the connection
+    await knex.destroy() // close the connection
 })
 ```
 
@@ -600,7 +600,7 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 > TODO
 
-#### 💎 Execise 3.4: Integrating with Applitools
+#### 💎 Execise 3.3: Integrating with Applitools
 
 > TODO
 
@@ -681,13 +681,13 @@ const Pokemon = require("../models/Pokemon")
 const assert = require("assert")
 
 describe("Pokemon", function() {
-	describe("#setName()", function() {
-		it("should set name when value is present", function() {
-			var pokemon = new Pokemon()
-			pokemon.setName("Pikachu")
-			assert.equal(pokemon.name, "Pikachu")
-		})
-	})
+    describe("#setName()", function() {
+        it("should set name when value is present", function() {
+            var pokemon = new Pokemon()
+            pokemon.setName("Pikachu")
+            assert.equal(pokemon.name, "Pikachu")
+        })
+    })
 })
 ```
 
@@ -695,9 +695,9 @@ describe("Pokemon", function() {
 
 ```javascript
 it("should set name when value is present", function() {
-	var pokemon = new Pokemon()
-	pokemon.setName("Pikachu")
-	pokemon.should.have.property("name", "Pikachu")
+    var pokemon = new Pokemon()
+    pokemon.setName("Pikachu")
+    pokemon.should.have.property("name", "Pikachu")
 })
 ```
 
@@ -705,9 +705,9 @@ it("should set name when value is present", function() {
 
 ```javascript
 it("should set name when value is present", function() {
-	var pokemon = new Pokemon()
-	pokemon.setName("Pikachu")
-	expect(pokemon.name).to.equal("Pikachu")
+    var pokemon = new Pokemon()
+    pokemon.setName("Pikachu")
+    expect(pokemon.name).to.equal("Pikachu")
 })
 ```
 
@@ -715,10 +715,10 @@ it("should set name when value is present", function() {
 
 ```javascript
 it("throw error when value is empty", function() {
-	assert.throws(function() {
-		var pokemon = new Pokemon()
-		pokemon.setName("")
-	}, "name cannot be empty")
+    assert.throws(function() {
+        var pokemon = new Pokemon()
+        pokemon.setName("")
+    }, "name cannot be empty")
 })
 ```
 
@@ -730,24 +730,24 @@ const Pokedex = require("../db/Pokedex")
 const expect = require("chai").expect
 
 describe("Pokedex", function() {
-	// connect to the database
-	let pokedex = new Pokedex()
-	pokedex.connect("./storage/test.sqlite3")
+    // connect to the database
+    let pokedex = new Pokedex()
+    pokedex.connect("./storage/test.sqlite3")
 
-	describe("#save()", function() {
-		it("should add pokemon", async function() {
-			// Create a Pokemon
-			let pokemon = new Pokemon()
-			pokemon.setName("Pikachu")
-			pokemon.setTypes(["Electric"])
+    describe("#save()", function() {
+        it("should add pokemon", async function() {
+            // Create a Pokemon
+            let pokemon = new Pokemon()
+            pokemon.setName("Pikachu")
+            pokemon.setTypes(["Electric"])
 
-			// Save to the Pokedex
-			await pokedex.save(pokemon)
+            // Save to the Pokedex
+            await pokedex.save(pokemon)
 
-			// Validate that the pokemon now has an id
-			expect(pokemon.id).to.be.a("number")
-		})
-	})
+            // Validate that the pokemon now has an id
+            expect(pokemon.id).to.be.a("number")
+        })
+    })
 })
 ```
 
@@ -755,23 +755,23 @@ describe("Pokedex", function() {
 
 ```javascript
 describe("#save_callback()", function() {
-	it("should add pokemon", function(done) {
-		// Create a Pokemon
-		let pokemon = new Pokemon()
-		pokemon.setName("Pikachu")
-		pokemon.setTypes(["Electric"])
+    it("should add pokemon", function(done) {
+        // Create a Pokemon
+        let pokemon = new Pokemon()
+        pokemon.setName("Pikachu")
+        pokemon.setTypes(["Electric"])
 
-		// Save to the Pokedex
-		pokedex.save_callback(pokemon, function(err) {
-			if (err) {
-				return done(err)
-			}
+        // Save to the Pokedex
+        pokedex.save_callback(pokemon, function(err) {
+            if (err) {
+                return done(err)
+            }
 
-			// Validate that the pokemon now has an id
-			expect(pokemon.id).to.be.a("number")
-			return done()
-		})
-	})
+            // Validate that the pokemon now has an id
+            expect(pokemon.id).to.be.a("number")
+            return done()
+        })
+    })
 })
 ```
 
@@ -779,80 +779,154 @@ describe("#save_callback()", function() {
 
 ```javascript
 describe("Pokedex", function() {
-	let pokedex = new Pokedex()
+    let pokedex = new Pokedex()
 
-	before(function() {
-		return pokedex.connect("./storage/test.sqlite3")
-	})
+    before(function() {
+        return pokedex.connect("./storage/test.sqlite3")
+    })
 
-	beforeEach(function() {
-		return pokedex.dropTable().then(() => {
-			return pokedex.createTable()
-		})
-	})
+    beforeEach(function() {
+        return pokedex.dropTable().then(() => {
+            return pokedex.createTable()
+        })
+    })
 
-	after(function() {
-		return pokedex.close()
-	})
+    after(function() {
+        return pokedex.close()
+    })
 
-	// Test cases...
+    // Test cases...
 })
 ```
 
-### 💎 Execise 2.1
+### 💎 Execise 2.1: Writing an API test
 
 ```javascript
-it("should retrieve all pokemons", function() {
-	// promise
-	return chai
-		.request("http://localhost:3000")
-		.get("/pokemons")
-		.send()
-		.then(function(res) {
-			expect(res).to.have.status(200)
-			expect(res).to.have.header("content-type", "application/json; charset=utf-8")
-			expect(res).to.be.json
-			expect(res.body).to.be.a("Array")
-			expect(res.body).to.have.lengthOf(166) // 166 pokemons
-			expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
-		})
-		.catch(function(err) {
-			throw err
-		})
+describe("/api/pokemon/get", function() {
+    it("should retrieve all pokemons", function() {
+        // promise
+        return chai
+            .request("http://localhost:3000")
+            .get("/pokemons")
+            .send()
+            .then(function(res) {
+                expect(res).to.have.status(200)
+                expect(res).to.have.header("content-type", "application/json; charset=utf-8")
+                expect(res).to.be.json
+                expect(res.body).to.be.a("Array")
+                expect(res.body).to.have.lengthOf(166) // 166 pokemons
+                expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
+            })
+            .catch(function(err) {
+                throw err
+            })
+    })
+})
+
+describe("/api/pokemons/add", function() {
+    it("should add pokemon", async function() {
+        const res = await chai
+            .request(app)
+            .post("/api/pokemons/add")
+            .send({
+                name: "MewThree",
+                hp: "999",
+                attack: "999",
+                defense: "999",
+                sp_attack: "999",
+                sp_defense: "999",
+                speed: "999",
+                legendary: true
+            })
+        expect(res).to.have.status(200)
+        expect(res).to.have.header("content-type", "application/json; charset=utf-8")
+        expect(res).to.be.json
+        expect(res.body.name).to.be.equal("MewThree")
+    })
 })
 ```
 
-### 💎 Execise 2.2
+### 💎 Execise 2.2: Resetting the web server between tests
 
 ```javascript
 describe("API tests", function() {
-	const app = require("../app")
-	describe("/api/pokemon/get", function() {
-		it("should retrieve all pokemons", function() {
-			// promise
-			return chai
-				.request(app)
-				.get("/api/pokemons")
-				.send()
-				.then(function(res) {
-					expect(res).to.have.status(200)
-					expect(res).to.have.header("content-type", "application/json; charset=utf-8")
-					expect(res).to.be.json
-					expect(res.body).to.be.a("Array")
-					expect(res.body).to.have.lengthOf(166) // 166 pokemons
-					expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
-				})
-				.catch(function(err) {
-					throw err
-				})
-		})
-	})
+    const app = require("../app")
+    describe("/api/pokemon/get", function() {
+        it("should retrieve all pokemons", function() {
+            // promise
+            return chai
+                .request(app) // 👈 change this
+                .get("/api/pokemons")
+                .send()
+                .then(function(res) {
+                    expect(res).to.have.status(200)
+                    expect(res).to.have.header("content-type", "application/json; charset=utf-8")
+                    expect(res).to.be.json
+                    expect(res.body).to.be.a("Array")
+                    expect(res.body).to.have.lengthOf(166) // 166 pokemons
+                    expect(res.body[0].name).to.be.equal("Bulbasaur") // first pokemon should be bulbasaur
+                })
+                .catch(function(err) {
+                    throw err
+                })
+        })
+    })
 })
 ```
 
-### 💎 Execise 2.3
+#### 💎 Execise 2.3: Seeding the test database between tests
 ```javascript
-// todo
+process.env.NODE_ENV = "test"
+
+const chai = require("chai")
+const expect = require("chai").expect
+const chaiHttp = require("chai-http")
+chai.use(chaiHttp)
+
+describe("API tests", function() {
+    
+    const app = require("../../app")
+    
+    let knex
+    before(async function() { // 👈 Add this
+        const config = require("../../knexfile.js")[process.env.NODE_ENV]
+        knex = require("knex")(config) // connect
+        await knex.migrate.rollback(true) // rollback the schema, this will also destroy all data
+        await knex.migrate.latest() // migrate the schema to the latest version
+    })
+
+    beforeEach(async function() { // 👈 Add this
+        await knex.seed.run() // seed the test data
+    })
+
+    after(async function() { // 👈 Add this
+        await knex.destroy() // close the connection
+    })
+
+    // POST methods
+    describe("/api/pokemons/add", function() {
+        it("should add pokemon", async function() {
+            const res = await chai
+                .request(app)
+                .post("/api/pokemons/add")
+                .send({
+                    name: "MewThree",
+                    hp: "999",
+                    attack: "999",
+                    defense: "999",
+                    sp_attack: "999",
+                    sp_defense: "999",
+                    speed: "999",
+                    legendary: true
+                })
+            expect(res).to.have.status(200)
+            expect(res).to.have.header("content-type", "application/json; charset=utf-8")
+            expect(res).to.be.json
+            expect(res.body.name).to.be.equal("MewThree")
+        })
+    })
+
+})
 ```
 
 ### 💎 Execise 3.1: Testing with UI-licious
@@ -872,33 +946,33 @@ Solution without screenshots:
 
 ```javascript
 describe("End-to-end acceptance tests", function() {
-	
-	it("Search for Pikachu", function() {
-		browser.url("http://localhost:3000")
-		let title = browser.getTitle()
-		
-		// Enter search input
-		let nameField = $("#pokemon-search-form-name-input")
-		nameField.setValue("Pikachu")
-		
-		// Click search button
-		let searchButton = $("#pokemon-search-form-submit-btn")
-		searchButton.click()
-		
-		// Wait for the pikachu card title to exist
-		let pokemonCardTitle = $(".pokemon-card:first-child .pokemon-card-title")
-		pokemonCardTitle.waitForExist(500)
+    
+    it("Search for Pikachu", function() {
+        browser.url("http://localhost:3000")
+        let title = browser.getTitle()
+        
+        // Enter search input
+        let nameField = $("#pokemon-search-form-name-input")
+        nameField.setValue("Pikachu")
+        
+        // Click search button
+        let searchButton = $("#pokemon-search-form-submit-btn")
+        searchButton.click()
+        
+        // Wait for the pikachu card title to exist
+        let pokemonCardTitle = $(".pokemon-card:first-child .pokemon-card-title")
+        pokemonCardTitle.waitForExist(500)
 
-		// Assert if pokemon card has the word pikachu
-		let pokemonName = pokemonCardTitle.getText()
-		expect(pokemonName).to.equal("Pikachu")
+        // Assert if pokemon card has the word pikachu
+        let pokemonName = pokemonCardTitle.getText()
+        expect(pokemonName).to.equal("Pikachu")
 
     })
     
 })
 ```
 
-### 💎 Execise 3.3
+### 💎 Execise 3.3: Integrating with Applitools
 ```
 
 ```
