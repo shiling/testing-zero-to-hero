@@ -714,7 +714,7 @@ it("throw error when value is empty", function() {
 })
 ```
 
-#### 💎 Execise 1.5: Testing promises
+### 💎 Execise 1.5: Testing promises
 
 ```javascript
 const Pokemon = require("../models/Pokemon")
@@ -743,7 +743,7 @@ describe("Pokedex", function() {
 })
 ```
 
-#### 💎 Execise 1.6: Testing callback
+### 💎 Execise 1.6: Testing callback
 
 ```javascript
 describe("#save_callback()", function() {
@@ -767,7 +767,7 @@ describe("#save_callback()", function() {
 })
 ```
 
-#### 💎 Execise 1.7: Writing hooks to setup and teardown tests
+### 💎 Execise 1.7: Writing hooks to setup and teardown tests
 
 ```javascript
 describe("Pokedex", function() {
@@ -791,7 +791,7 @@ describe("Pokedex", function() {
 })
 ```
 
-#### 💎 Execise 2.1
+### 💎 Execise 2.1
 
 ```javascript
 it("should retrieve all pokemons", function() {
@@ -814,7 +814,7 @@ it("should retrieve all pokemons", function() {
 })
 ```
 
-#### 💎 Execise 2.2
+### 💎 Execise 2.2
 
 ```javascript
 describe("API tests", function() {
@@ -842,12 +842,12 @@ describe("API tests", function() {
 })
 ```
 
-#### 💎 Execise 2.3
+### 💎 Execise 2.3
 ```javascript
 // todo
 ```
 
-#### 💎 Execise 3.1: Testing with UI-licious
+### 💎 Execise 3.1: Testing with UI-licious
 ```javascript
 I.goTo("https://93c6059e.ngrok.io/") // UI-licious needs a public url to access your application
 I.fill("Name", "Pikachu")
@@ -858,7 +858,7 @@ UI.context((".pokemon-list"), () => {
 })
 ```
 
-#### 💎 Execise 3.2: Testing with webdriver.io
+### 💎 Execise 3.2: Testing with webdriver.io
 
 Solution without screenshots:
 
@@ -890,7 +890,7 @@ describe("End-to-end acceptance tests", function() {
 })
 ```
 
-#### 💎 Execise 3.3
+### 💎 Execise 3.3
 ```
 
 ```
