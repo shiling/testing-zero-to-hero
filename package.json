@@ -1,28 +1,30 @@
 {
-  "name": "testing-from-zero-to-hero",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www --env production",
-    "test": "mocha \"./tests/*.js\" --exit"
-  },
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "chakram": "^1.5.0",
-    "cookie-parser": "~1.4.4",
-    "csv-parse": "^4.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "^1.11.0",
-    "knex": "^0.17.5",
-    "lodash": "^4.17.11",
-    "mocha": "^6.1.4",
-    "mongodb": "^3.2.7",
-    "morgan": "~1.9.1",
-    "pug": "^2.0.3",
-    "sqlite3": "^4.0.8",
-  }
+	"name": "testing-from-zero-to-hero",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www",
+		"test": "mocha \"./tests/**/*.js\" --exclude \"./tests/3_e2e_tests/**/*.js\" --exit",
+		"test:unit": "mocha \"./tests/1_unit_tests/**/*.js\" --exit",
+		"test:api": "mocha \"./tests/2_api_tests/**/*.js\" --exit",
+		"test:e2e": "wdio ./wdio.conf.js"
+	},
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cookie-parser": "~1.4.4",
+		"csv-parse": "^4.4.3",
+		"debug": "~2.6.9",
+		"express": "~4.16.1",
+		"fibers": "^4.0.1",
+		"http-errors": "~1.6.3",
+		"jade": "^1.11.0",
+		"knex": "^0.17.5",
+		"lodash": "^4.17.11",
+		"morgan": "~1.9.1",
+		"node-gyp": "^4.0.0",
+		"pug": "^2.0.3",
+		"sqlite3": "^4.0.8"
+	},
+	"devDependencies": {
+	}
 }
