@@ -1,9 +1,5 @@
 describe("End-to-end acceptance tests", function() {
 	
-	before(function(){
-		
-	})
-	
 	it("Search for Pikachu", function() {
 		browser.url("http://localhost:3000")
 		let title = browser.getTitle()
@@ -22,7 +18,8 @@ describe("End-to-end acceptance tests", function() {
 
 		// assert if pokemon card has the word pikachu
 		let pokemonName = pokemonCardTitle.getText()
-		console.log("pokemonName: ", pokemonName)
+		expect(pokemonName).to.equal("Pikachu")
+
 	})
 
 	// it("List pokemons", function() {})
