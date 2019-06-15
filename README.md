@@ -67,7 +67,7 @@ Unit tests are the smallest kinds of functional tests, and are designed to test 
 
 A unit test should test if the method produces the correct output given certain inputs.
 
-#### Exercise 1.1: Hello Pikachu
+#### 💎 Execise 1.1: Hello Pikachu
 
 In this exercise, we're going to try writing our first unit test for the `Pokemon` class in `models/Pokemon.js`. Let's test the `setName` method.
 
@@ -163,7 +163,7 @@ Chai also supports a lot of [plugins](https://www.chaijs.com/plugins/) to help y
 -   [chai-file](https://www.chaijs.com/plugins/chai-files/) for testing files
 -   [chai-doge](https://www.chaijs.com/plugins/chai-doge/) wow, very doge-style language chains for Chai, much silly
 
-#### Exercise 1.2: Using `should` syntax
+#### 💎 Execise 1.2: Using `should` syntax
 
 👉 Install Chai:
 
@@ -190,7 +190,7 @@ _Note that you need to actually call the should function to import it._
 
 👉 Write the previous test using the `should` syntax.
 
-#### Exercise 1.3: Using `expect` syntax
+#### 💎 Execise 1.3: Using `expect` syntax
 
 In this exercise, let's try out Chai's `expect` syntax.
 
@@ -213,7 +213,7 @@ const expect = require("expect").expect
 
 It's important to also test negative scenarios, as user can make mistakes, and the application is expect to gracefully handle these accidents by showing appropriate errors to help users identify the problem and correct themselves.
 
-#### Exercise 1.4: Using `assert.throws` to test exceptions
+#### 💎 Execise 1.4: Using `assert.throws` to test exceptions
 
 👉 Using Chai's `assert.throws`, test if an appropriate error is thrown when an empty string is passed to the `setName` method.
 
@@ -260,7 +260,7 @@ it("should make sandwich", async function() {
 })
 ```
 
-#### Exercise 1.5: Testing promises
+#### 💎 Execise 1.5: Testing promises
 
 For the following exericses, let's test the `Pokedex` which provides methods to store information about our pokemons to a database. All of the Pokedex methods are asynchronous, and returns Promises.
 
@@ -275,7 +275,7 @@ Let's test the `Pokedex.save()` method, which saves a pokemon to the database. I
 -   `Pokedex.getByName` : Get a pokemon by name
 -   `Pokedex.find` : Find pokemons by attributes
 
-#### Exercise 1.6: Testing callback
+#### 💎 Execise 1.6: Testing callback
 
 For the purpose of illustrating how to test callbacks, a callback version of `save()` is implemented as `save_callback()`.
 
@@ -296,7 +296,7 @@ Available hooks:
 
 Hooks handle asychronous codes (promises and callbacks) like regular test cases.
 
-#### Exercise 1.7: Writing hooks to setup and teardown tests
+#### 💎 Execise 1.7: Writing hooks to setup and teardown tests
 
 👉 Write a `beforeEach` hook to clear the database between tests.
 
@@ -342,7 +342,7 @@ The application will be loaded at [http://localhost:3000](http://localhost:3000)
 
 Let's test the `GET /api/pokemons` API which lists the pokemons in the database, and allows you to search for pokemons by attributes.
 
-#### Exercise 2.1
+#### 💎 Execise 2.1
 
 We're going to use the [`chai-http`](https://www.chaijs.com/plugins/chai-http/) plugin which allows us to test http requests.
 
@@ -378,7 +378,7 @@ Ideally, we don't want to be running our tests on production, and polluting it w
 
 Let's setup our tests to run on a test environment with a web server and a database, and reset the environment between tests.
 
-#### Exercise 2.2: Resetting the web server between tests
+#### 💎 Execise 2.2: Resetting the web server between tests
 
 The web server can contain persistant data which means it is possible for tests to be affected by tests that ran previously. To ensure that the test environment is the same between tests, we should start and stop the web server between tests.
 
@@ -402,7 +402,7 @@ Thankfully, `chai-http` already has this behavior built-in, and you can simply c
 
 👉 Use `chai.request(app)` to start and stop the webserver between tests.
 
-#### Exercise 2.3: Seeding the test database between tests
+#### 💎 Execise 2.3: Seeding the test database between tests
 
 Ideally, we want to use another database for our test environment to avoid polluting production with test data, and to also be able to reset the database between tests.
 
@@ -488,7 +488,7 @@ To perform acceptance testing, we need to simulate user stories, which should in
 
 ### UI-licious
 
-#### Exercise 3.1: Testing with UI-licious
+#### 💎 Execise 3.1: Testing with UI-licious
 
 We can use GUI automation tools to automate acceptance testing.
 
@@ -552,7 +552,7 @@ There's a lot of frameworks built on top of Selenium that help make testing easi
     -   [NightmareJS](https://github.com/segmentio/nightmare)
     -   [CodeceptJS](https://codecept.io/)
 
-#### Exercise 3.2: Testing with webdriver.io
+#### 💎 Execise 3.2: Testing with webdriver.io
 
 ##### Setting up selenium 
 
@@ -592,13 +592,13 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 > TODO
 
-#### Exercise 3.4: Integrating with Applitools
+#### 💎 Execise 3.4: Integrating with Applitools
 
 > TODO
 
 ## Chapter 4: Integrating with CI / CD, and practicing TDD
 
-#### Exercise 4.1:
+#### 💎 Execise 4.1:
 
 ##### Deploying to Netlify (Staging)
 
@@ -666,7 +666,7 @@ A good test is deterministics / repeatable, i.e. given the same environment and 
 
 ## Solutions
 
-### Exercise 1.1: Hello Pikachu
+### 💎 Execise 1.1: Hello Pikachu
 
 ```javascript
 const Pokemon = require("../models/Pokemon")
@@ -683,7 +683,7 @@ describe("Pokemon", function() {
 })
 ```
 
-### Exercise 1.2: Using `should` syntax
+### 💎 Execise 1.2: Using `should` syntax
 
 ```javascript
 it("should set name when value is present", function() {
@@ -693,7 +693,7 @@ it("should set name when value is present", function() {
 })
 ```
 
-### Exercise 1.3: Using `expect` syntax
+### 💎 Execise 1.3: Using `expect` syntax
 
 ```javascript
 it("should set name when value is present", function() {
@@ -703,7 +703,7 @@ it("should set name when value is present", function() {
 })
 ```
 
-### Exercise 1.4: Using `assert.throws` to test exceptions
+### 💎 Execise 1.4: Using `assert.throws` to test exceptions
 
 ```javascript
 it("throw error when value is empty", function() {
@@ -714,7 +714,7 @@ it("throw error when value is empty", function() {
 })
 ```
 
-#### Exercise 1.5: Testing promises
+#### 💎 Execise 1.5: Testing promises
 
 ```javascript
 const Pokemon = require("../models/Pokemon")
@@ -743,7 +743,7 @@ describe("Pokedex", function() {
 })
 ```
 
-#### Exercise 1.6: Testing callback
+#### 💎 Execise 1.6: Testing callback
 
 ```javascript
 describe("#save_callback()", function() {
@@ -767,7 +767,7 @@ describe("#save_callback()", function() {
 })
 ```
 
-#### Exercise 1.7: Writing hooks to setup and teardown tests
+#### 💎 Execise 1.7: Writing hooks to setup and teardown tests
 
 ```javascript
 describe("Pokedex", function() {
@@ -791,7 +791,7 @@ describe("Pokedex", function() {
 })
 ```
 
-#### Exercise 2.1
+#### 💎 Execise 2.1
 
 ```javascript
 it("should retrieve all pokemons", function() {
@@ -814,7 +814,7 @@ it("should retrieve all pokemons", function() {
 })
 ```
 
-#### Exercise 2.2
+#### 💎 Execise 2.2
 
 ```javascript
 describe("API tests", function() {
@@ -842,23 +842,26 @@ describe("API tests", function() {
 })
 ```
 
-#### Exercise 2.3
+#### 💎 Execise 2.3
 ```javascript
 // todo
 ```
 
-#### Exercise 3.1
+#### 💎 Execise 3.1: Testing with UI-licious
 ```javascript
 I.goTo("https://93c6059e.ngrok.io/") // UI-licious needs a public url to access your application
 I.fill("Name", "Pikachu")
 I.click("Search")
 I.see("Found 1 pokemon")
-UI.context((".pokemon-list"), ()=>{
+UI.context((".pokemon-list"), () => {
   I.see("Pikachu")
 })
 ```
 
-#### Exercise 3.2
+#### 💎 Execise 3.2: Testing with webdriver.io
+
+Solution without screenshots:
+
 ```javascript
 describe("End-to-end acceptance tests", function() {
 	
@@ -887,7 +890,7 @@ describe("End-to-end acceptance tests", function() {
 })
 ```
 
-#### Exercise 3.3
+#### 💎 Execise 3.3
 ```
 
 ```
