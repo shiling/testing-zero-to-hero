@@ -19,6 +19,8 @@ In this lab, we're going to write automate tests for this application:
 
 ### Setting up the project
 
+👉 Fork this repository (https://github.com/shiling/testing-zero-to-hero) and clone it to your fork of the repository
+
 👉 Run `npm install` to to install the project dependencies.
 
 ### Setting up tests for the project
@@ -69,7 +71,7 @@ A unit test should test if the method produces the correct output given certain 
 
 In this exercise, we're going to try writing our first unit test for the `Pokemon` class in `models/Pokemon.js`. Let's test the `setName` method.
 
-👉 Create the file `1_unit_tests.js` in the `/tests/` folder.
+👉 Create the file `1_pokemon.js` in the `/tests/1_unit_tests/` folder.
 
 👉 Import the Pokemon class:
 
@@ -484,7 +486,9 @@ To perform acceptance testing, we need to simulate user stories, which should in
     -   Or a **negative** flow where a user makes mistake (it's very human to do so!)
         -   with assertions to validate that appropriate messages are shown to help the user recover from the error
 
-### Exercise 3.1: Testing with UI-licious
+### UI-licious
+
+#### Exercise 3.1: Testing with UI-licious
 
 We can use GUI automation tools to automate acceptance testing.
 
@@ -511,7 +515,7 @@ This will install and then start ngrok to connect to your localhost application 
 
 ### Doing it yourself
 
-### The WebDriver Protocol and Selenium
+#### The WebDriver Protocol and Selenium
 
 We can use GUI automation tools to automate acceptance testing. In the case for browser applications, the standard is to use the WebDriver protocol which is the specs defined by WC3 for browser automation.
 Browser vendors implement drivers that support the protocol according to the specs. Or at least they are supposed to. But like printer drivers, vendors can't seem to follow the spec, and everyone seems to be doing their own thing, so there's a lot of missing implementations and inconsistencies.
@@ -548,9 +552,9 @@ There's a lot of frameworks built on top of Selenium that help make testing easi
     -   [NightmareJS](https://github.com/segmentio/nightmare)
     -   [CodeceptJS](https://codecept.io/)
 
-### Exercise 3.2: Testing with webdriver.io
+#### Exercise 3.2: Testing with webdriver.io
 
-#### Setting up selenium 
+##### Setting up selenium 
 
 👉 Install selenium-standalone
 
@@ -563,7 +567,7 @@ npm install selenium-standalone --save-dev
 ./node_modules/.bin/selenium-standalone install
 ```
 
-#### Setting up webdriverio 
+##### Setting up webdriverio 
 
 👉 Install wdio which is the test runner for webdriver.io
 
@@ -575,7 +579,7 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 👉 Create "/tests/3_e2e_tests" folder for e2e tests.
 
-#### Writing your test
+##### Writing your test
 
 👉 Same as the previous exercise, write a test to:
 - Search for "Pikachu"
@@ -584,29 +588,35 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 👉 (Optional) Take screenshots with `browser.takeScreenshot()` and save it to a file
 
-### Exercise 3.4: Visual Testing
+### Visual Testing
+
+> TODO
+
+#### Exercise 3.4: Integrating with Applitools
 
 > TODO
 
 ## Chapter 4: Integrating with CI / CD, and practicing TDD
 
-### Deploying to Netlify (Staging)
+#### Exercise 4.1:
+
+##### Deploying to Netlify (Staging)
 
 We'll be using [Netlify](https://netlify.com) to deploy our application. Netlify comes with CI/CD built in, one of the cool features they have is that when every you push a change to a branch or create a PR, Netlify will deploy a "staging" URL for you to preview the changes.
 
-Install Netlify:
+👉 Install Netlify:
 
 ```
 npm install netlify-cli -g
 ```
 
-Login to Netlify (You need to have a Netlify account)
+👉Login to Netlify (You need to have a Netlify account)
 
 ```
 netlify login
 ```
 
-Initialise your Netlify website.
+👉 Initialise your Netlify website.
 
 ```
 netlify init
@@ -614,7 +624,9 @@ netlify init
 
 Netlify CI/CD is now configured!
 
-### Exercise 4.1:
+👉 Make some changes to the application, e.g. add a "Edit Pokemon" form or a "Add Pokemon" form and some tests
+
+👉 Create a PR
 
 ---
 
