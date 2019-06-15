@@ -583,7 +583,7 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 ### Exercise 3.3: Visual Testing
 
-## Chapter 4: Integrating with CI / CD
+## Chapter 4: Integrating with CI / CD, and practicing TDD
 
 ### Deploying to Netlify (Staging)
 
@@ -611,6 +611,8 @@ Netlify CI/CD is now configured!
 
 ### Exercise 4.1:
 
+---
+
 ## What is a good test?
 
 A good test covers only a single hypothesis (a software requirement).
@@ -619,7 +621,31 @@ A good test has assertions to validate the hypothesis.
 
 A good test is deterministics / repeatable, i.e. given the same environment and inputs, the output is the same.
 
+---
+
 ## Alternatives
+
+### Unit test frameworks
+
+-   Mocha : Basic stuff, but really flexible, intended for plug and play with other assertion libraries
+-   Jasmine : Batteries included (bdd-style expect assertions are built-in)
+
+### Assertion Libraries:
+
+-   NodeJS's built in assert module
+    -   Not very rich in terms of APIs, and some issues with exception assertion
+-   should.js - just the bdd-style `should` syntax
+-   expect.js - just the bdd-style `expect` syntax
+-   Chai - supports `should`, `expect` and `assert`.
+
+## Assertion Libraries for testing REST APIs:
+
+-   Chakram: Pretty nice syntax too (though for the purpose of the workshop, )
+-   chai-http
+
+###
+
+---
 
 ## Solutions
 
@@ -818,42 +844,12 @@ describe("API tests", function() {
 ```
 ```
 
----
+--- 
 
-## Chapter 4:
-
-### Setting up selenium server
-
-###
+## FYI
 
 #### What's BDD?
 
 One common issue with unit tests is
 
 BDD stands for Behavior-Driven Development, which is a style of writing tests in a way that describes how the application **should** behave or is **expected** to behave, instead of describing how it is implemented.
-
----
-
-# Alternatives:
-
-## Unit test frameworks
-
--   Mocha : Basic stuff, but really flexible, intended for plug and play with other assertion libraries
--   Jasmine : Batteries included (bdd-style expect assertions are built-in)
-
-## Assertion Libraries:
-
--   NodeJS's built in assert module
-    -   Not very rich in terms of APIs, and some issues with exception assertion
--   should.js - just the bdd-style `should` syntax
--   expect.js - just the bdd-style `expect` syntax
--   Chai - supports `should`, `expect` and `assert`.
-
-## Assertion Libraries for testing REST APIs:
-
--   Chakram: Pretty nice syntax too (though for the purpose of the workshop, )
--   chai-http
-
-## Snapshot testing libraries:
-
-##
