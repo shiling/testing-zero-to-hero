@@ -3,10 +3,10 @@ extends layout
 block content
 	h1= title
 	div(class="search-box mb-m")
-		form(action="")
+		form(id="pokemon-search-form", action="")
 			div(class="form-row mb-m")
 				label(class="form-label mr-m") Name
-				input(type="text", name="name", value=(filter.name || ''))
+				input(id="pokemon-search-form-name-input", type="text", name="name", value=(filter.name || ''))
 			div(class="form-row mb-m")
 				label(class="form-label mr-m") Type
 				div
@@ -37,8 +37,12 @@ block content
 					span No
 			div(class="form-row")
 				label(class="form-label mr-m") 
-				button(type="submit", class="form-submit-btn mr-m") Search
+				button(id="pokemon-search-form-submit-btn", type="submit", class="form-submit-btn mr-m") Search
 				button(type="button", class="form-reset-btn mr-m", onclick="location.href='/?'") Clear
+	p(class="pokemon-list-summary")
+		span Found 
+		b(class="pokemon-count")= pokemons.length
+		span  pokemons.
 	div(class="pokemon-list")
 		include mixins/pokemonCard
 		each pokemon in pokemons

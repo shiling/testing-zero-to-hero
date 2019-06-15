@@ -1,0 +1,39 @@
+{
+	"name": "testing-from-zero-to-hero",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www",
+		"test": "mocha \"./tests_solutions/**/*.js\" --exclude \"./tests_solutions/3_e2e_tests/**/*.js\" --exit",
+		"test:unit": "mocha \"./tests_solutions/1_unit_tests/**/*.js\" --exit",
+		"test:api": "mocha \"./tests_solutions/2_api_tests/**/*.js\" --exit",
+		"test:e2e": "wdio ./wdio.conf.js"
+	},
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cookie-parser": "~1.4.4",
+		"csv-parse": "^4.4.3",
+		"debug": "~2.6.9",
+		"express": "~4.16.1",
+		"fibers": "^4.0.1",
+		"http-errors": "~1.6.3",
+		"knex": "^0.17.5",
+		"lodash": "^4.17.11",
+		"morgan": "~1.9.1",
+		"node-gyp": "^4.0.0",
+		"pug": "^2.0.3",
+		"sqlite3": "^4.0.8"
+	},
+	"devDependencies": {
+		"@wdio/cli": "^5.10.4",
+		"@wdio/local-runner": "^5.10.4",
+		"@wdio/mocha-framework": "^5.10.1",
+		"@wdio/selenium-standalone-service": "^5.9.3",
+		"@wdio/spec-reporter": "^5.9.3",
+		"@wdio/sync": "^5.10.1",
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"mocha": "^6.1.4",
+		"selenium-standalone": "^6.16.0"
+	}
+}
