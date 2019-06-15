@@ -13,6 +13,7 @@ In this lab, we're going to write automate tests for this application:
 -   Chapter 1: Unit testing with [Mocha](https://mochajs.org) and [Chai](https://www.chaijs.com/)
 -   Chapter 2: API testing with [Chai-http](http://dareid.github.io/chakram/)
 -   Chapter 3: End-to-end acceptance testing with [webdriver.io](https://webdriver.io/) and [UI-licious](https://uilicious.com)
+-   Chapter 4: Integrating with CI/CD and practicing TDD
 
 ## Setup
 
