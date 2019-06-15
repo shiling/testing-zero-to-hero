@@ -1,5 +1,38 @@
 # Lab : Gotta catch them all!
 
+__Table of Contents__
+- [Setup](#setup)
+- [Chapter 1 - Unit Testing](#chapter-1--unit-testing)
+    - [Exercise 1.1](#)
+    - [Exercise 1.2](#)
+    - [Exercise 1.3](#)
+    - [Exercise 1.4](#)
+    - [Exercise 1.5](#)
+    - [Exercise 1.6](#)
+    - [Exercise 1.7](#)
+- [Chapter 2 - API Testing](#chapter-2--api-testing)
+    - [Exercise 2.1](#)
+    - [Exercise 2.2](#)
+    - [Exercise 2.3](#)
+- [Chapter 3 - UI Testing](#chapter-3--end-to-end-acceptance-testing)
+    - [Exercise 3.1](#)
+    - [Exercise 3.2](#)
+    - [Exercise 3.3](#)
+- [Solutions](#solutions)
+  - [Exercise 1.1](#-execise-11-hello-pikachu-1)
+  - [Exercise 1.2](#-execise-12-using-should-syntax-1)
+  - [Exercise 1.3](#-execise-13-using-expect-syntax-1)
+  - [Exercise 1.4](#-execise-14-using-assertthrows-to-test-exceptions-1)
+  - [Exercise 1.5](#-execise-15-testing-promises-1)
+  - [Exercise 1.6](#-execise-16-testing-callback-1)
+  - [Exercise 1.7](#-execise-17-writing-hooks-to-setup-and-teardown-tests-1)
+  - [Exercise 2.1](#)
+  - [Exercise 2.2](#)
+  - [Exercise 2.3](#)
+  - [Exercise 3.1](#-execise-31-testing-with-ui-licious-1)
+  - [Exercise 3.2](#-execise-32-testing-with-webdriverio-1)
+  - [Exercise 3.3](#)
+
 ## Introduction
 
 Welcome to the Pokedex!
