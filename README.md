@@ -582,7 +582,11 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 - Validate that there is one result
 - Validate that there is the first result has the title "Pikachu"
 
-### Exercise 3.3: Visual Testing
+👉 (Optional) Take screenshots with `browser.takeScreenshot()` and save it to a file
+
+### Exercise 3.4: Visual Testing
+
+> TODO
 
 ## Chapter 4: Integrating with CI / CD, and practicing TDD
 
@@ -833,16 +837,47 @@ describe("API tests", function() {
 
 #### Exercise 3.1
 ```javascript
-// todo
+I.goTo("https://93c6059e.ngrok.io/") // UI-licious needs a public url to access your application
+I.fill("Name", "Pikachu")
+I.click("Search")
+I.see("Found 1 pokemon")
+UI.context((".pokemon-list"), ()=>{
+  I.see("Pikachu")
+})
 ```
 
 #### Exercise 3.2
 ```javascript
-// todo
+describe("End-to-end acceptance tests", function() {
+	
+	it("Search for Pikachu", function() {
+		browser.url("http://localhost:3000")
+		let title = browser.getTitle()
+		
+		// Enter search input
+		let nameField = $("#pokemon-search-form-name-input")
+		nameField.setValue("Pikachu")
+		
+		// Click search button
+		let searchButton = $("#pokemon-search-form-submit-btn")
+		searchButton.click()
+		
+		// Wait for the pikachu card title to exist
+		let pokemonCardTitle = $(".pokemon-card:first-child .pokemon-card-title")
+		pokemonCardTitle.waitForExist(500)
+
+		// Assert if pokemon card has the word pikachu
+		let pokemonName = pokemonCardTitle.getText()
+		expect(pokemonName).to.equal("Pikachu")
+
+    })
+    
+})
 ```
 
 #### Exercise 3.3
 ```
+
 ```
 
 --- 
