@@ -33,7 +33,7 @@ __Table of Contents__
   - [Exercise 3.2](#-execise-32-testing-with-webdriverio-1)
   - [Exercise 3.3](#)
 
-## Introduction
+#  Introduction
 
 Welcome to the Pokedex!
 
@@ -48,27 +48,27 @@ In this lab, we're going to write automate tests for this application:
 -   Chapter 3: End-to-end acceptance testing with [webdriver.io](https://webdriver.io/) and [UI-licious](https://uilicious.com)
 <!-- -   Chapter 4: Integrating with CI/CD and practicing TDD -->
 
-## Setup
+#  Setup
 
-### Setting up the project
+##  Setting up the project
 
 👉 Fork this repository (https://github.com/shiling/testing-zero-to-hero) and clone it to your fork of the repository
 
 👉 Run `npm install` to to install the project dependencies.
 
-### Setting up tests for the project
+##  Setting up tests for the project
 
 Now, let's setup the project to run some tests.
 
 👉 Create a folder called `/tests` for your tests.
 
-#### What is Mocha?
+###  What is Mocha?
 
 We are going to setup Mocha to run our tests.
 
 [Mocha](https://mochajs.org) is a javascript testing framework, it helps you to manage the setup, execution, teardown, and reporting of your tests.
 
-#### Setting up Mocha
+###  Setting up Mocha
 
 👉 Install [Mocha](https://mochajs.org).
 
@@ -90,17 +90,17 @@ This will tell Mocha to execute all tests under the `/tests` folder (in alphabet
 
 The `--exit` flag forces mocha to exit once all the tests are complete, even if other resources such as the web server or db connections are still alive (but of course, you should try to close them during the teardown process.)
 
-## Chapter 1 : Unit Testing
+#  Chapter 1 : Unit Testing
 
 Let's start with something simple - unit tests.
 
-### What is unit testing?
+##  What is unit testing?
 
 Unit tests are the smallest kinds of functional tests, and are designed to test a single method.
 
 A unit test should test if the method produces the correct output given certain inputs.
 
-#### 💎 Execise 1.1: Hello Pikachu
+###  💎 Execise 1.1: Hello Pikachu
 
 In this exercise, we're going to try writing our first unit test for the `Pokemon` class in `models/Pokemon.js`. Let's test the `setName` method.
 
@@ -179,7 +179,7 @@ it("should set name when passed non-empty string", function() {
 
 ![Screenshot of test run](#)
 
-### Using the Chai assertion library
+##  Using the Chai assertion library
 
 The build-in "assert" library that comes with NodeJS provides you a basic assertion commands, but is otherwise very limited _(and unfortunately has bugs itself... either that, or the documentation isn't very clear and I'm using it wrongly half the time...)_.
 
@@ -196,7 +196,7 @@ Chai also supports a lot of [plugins](https://www.chaijs.com/plugins/) to help y
 -   [chai-file](https://www.chaijs.com/plugins/chai-files/) for testing files
 -   [chai-doge](https://www.chaijs.com/plugins/chai-doge/) wow, very doge-style language chains for Chai, much silly
 
-#### 💎 Execise 1.2: Using `should` syntax
+###  💎 Execise 1.2: Using `should` syntax
 
 👉 Install Chai:
 
@@ -223,7 +223,7 @@ _Note that you need to actually call the should function to import it._
 
 👉 Write the previous test using the `should` syntax.
 
-#### 💎 Execise 1.3: Using `expect` syntax
+###  💎 Execise 1.3: Using `expect` syntax
 
 In this exercise, let's try out Chai's `expect` syntax.
 
@@ -242,15 +242,15 @@ const expect = require("expect").expect
 
 👉 Write the previous test using the `expect` syntax.
 
-### Negative testing
+##  Negative testing
 
 It's important to also test negative scenarios, as user can make mistakes, and the application is expect to gracefully handle these accidents by showing appropriate errors to help users identify the problem and correct themselves.
 
-#### 💎 Execise 1.4: Using `assert.throws` to test exceptions
+###  💎 Execise 1.4: Using `assert.throws` to test exceptions
 
 👉 Using Chai's `assert.throws`, test if an appropriate error is thrown when an empty string is passed to the `setName` method.
 
-### Testing asynchronous functions (callbacks and promises)
+##  Testing asynchronous functions (callbacks and promises)
 
 Mocha supports testing asynchronous functions like callbacks and promises.
 
@@ -293,7 +293,7 @@ it("should make sandwich", async function() {
 })
 ```
 
-#### 💎 Execise 1.5: Testing promises
+###  💎 Execise 1.5: Testing promises
 
 For the following exericses, let's test the `Pokedex` which provides methods to store information about our pokemons to a database. All of the Pokedex methods are asynchronous, and returns Promises.
 
@@ -308,13 +308,13 @@ Let's test the `Pokedex.save()` method, which saves a pokemon to the database. I
 -   `Pokedex.getByName` : Get a pokemon by name
 -   `Pokedex.find` : Find pokemons by attributes
 
-#### 💎 Execise 1.6: Testing callback
+###  💎 Execise 1.6: Testing callback
 
 For the purpose of illustrating how to test callbacks, a callback version of `save()` is implemented as `save_callback()`.
 
 👉 Write a test for `Pokedex.save_callback`
 
-### Hooks
+##  Hooks
 
 Mocha provides [hooks](https://mochajs.org/#hooks) for us to run code before and after tests.
 
@@ -329,7 +329,7 @@ Available hooks:
 
 Hooks handle asychronous codes (promises and callbacks) like regular test cases.
 
-#### 💎 Execise 1.7: Writing hooks to setup and teardown tests
+###  💎 Execise 1.7: Writing hooks to setup and teardown tests
 
 👉 Write a `beforeEach` hook to clear the database between tests.
 
@@ -345,11 +345,11 @@ return pokedex.dropTable().then(() => {
 
 👉 Write a `after` hook to close the database (it's always good to clean up before you leave!)
 
-## Chapter 2 : API Testing
+#  Chapter 2 : API Testing
 
 Now, let's move one layer up and work on testing out APIs.
 
-### Setup
+##  Setup
 
 In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the database for development and test environments.
 
@@ -371,11 +371,11 @@ npm start
 
 The application will be loaded at [http://localhost:3000](http://localhost:3000)
 
-### Writing API tests
+##  Writing API tests
 
 Let's test the `GET /api/pokemons` API which lists the pokemons in the database, and allows you to search for pokemons by attributes.
 
-#### 💎 Execise 2.1: Writing an API test
+###  💎 Execise 2.1: Writing an API test
 
 We're going to use the [`chai-http`](https://www.chaijs.com/plugins/chai-http/) plugin which allows us to test http requests.
 
@@ -405,13 +405,13 @@ chai.use(chaiHttp)
 
 👉 Write a test to add a pokemon using the `POST /api/pokemons/add` API.
 
-### Setting up the environment for API testing
+##  Setting up the environment for API testing
 
 Ideally, we don't want to be running our tests on production, and polluting it with test data.
 
 Let's setup our tests to run on a test environment with a web server and a database, and reset the environment between tests.
 
-#### 💎 Execise 2.2: Resetting the web server between tests
+###  💎 Execise 2.2: Resetting the web server between tests
 
 The web server can contain persistant data which means it is possible for tests to be affected by tests that ran previously. To ensure that the test environment is the same between tests, we should start and stop the web server between tests.
 
@@ -435,7 +435,7 @@ Thankfully, `chai-http` already has this behavior built-in, and you can simply c
 
 👉 Use `chai.request(app)` to start and stop the webserver between tests.
 
-#### 💎 Execise 2.3: Seeding the test database between tests
+###  💎 Execise 2.3: Seeding the test database between tests
 
 Ideally, we want to use another database for our test environment to avoid polluting production with test data, and to also be able to reset the database between tests.
 
@@ -500,9 +500,9 @@ after(async function() {
 
 👉 Order the tests for the `POST /api/pokemons/add` API before the `GET /pokemons` API, and run your tests. The test data should be reset when the `GET /pokemons` API tests are ran.
 
-## Chapter 3 : End-to-end Acceptance Testing
+#  Chapter 3 : End-to-end Acceptance Testing
 
-### What is acceptance testing?
+##  What is acceptance testing?
 
 A formal way of defining acceptance testing is to say that verifying that a software met business requirements.
 
@@ -519,9 +519,9 @@ To perform acceptance testing, we need to simulate user stories, which should in
     -   Or a **negative** flow where a user makes mistake (it's very human to do so!)
         -   with assertions to validate that appropriate messages are shown to help the user recover from the error
 
-### UI-licious
+##  UI-licious
 
-#### 💎 Execise 3.1: Testing with UI-licious
+###  💎 Execise 3.1: Testing with UI-licious
 
 We can use GUI automation tools to automate acceptance testing.
 
@@ -554,9 +554,9 @@ This will install and then start ngrok to connect to your localhost application 
 -   Validate that the results shows one Pokemon
 -   Validate that the result is a Pikachu
 
-### Doing it yourself
+##  Doing it yourself
 
-#### The WebDriver Protocol and Selenium
+###  The WebDriver Protocol and Selenium
 
 We can use GUI automation tools to automate acceptance testing. In the case for browser applications, the standard is to use the WebDriver protocol which is the specs defined by WC3 for browser automation.
 Browser vendors implement drivers that support the protocol according to the specs. Or at least they are supposed to. But like printer drivers, vendors can't seem to follow the spec, and everyone seems to be doing their own thing, so there's a lot of missing implementations and inconsistencies.
@@ -593,9 +593,9 @@ There's a lot of frameworks built on top of Selenium that help make testing easi
     -   [NightmareJS](https://github.com/segmentio/nightmare)
     -   [CodeceptJS](https://codecept.io/)
 
-#### 💎 Execise 3.2: Testing with webdriver.io
+###  💎 Execise 3.2: Testing with webdriver.io
 
-##### Setting up selenium 
+####  Setting up selenium 
 
 👉 Install selenium-standalone
 
@@ -608,7 +608,7 @@ npm install selenium-standalone --save-dev
 ./node_modules/.bin/selenium-standalone install
 ```
 
-##### Setting up webdriverio 
+####  Setting up webdriverio 
 
 👉 Install wdio which is the test runner for webdriver.io
 
@@ -620,7 +620,7 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 👉 Create "/tests/3_e2e_tests" folder for e2e tests.
 
-##### Writing your test
+####  Writing your test
 
 👉 Same as the previous exercise, write a test to:
 - Search for "Pikachu"
@@ -629,19 +629,19 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 
 👉 (Optional) Take screenshots with `browser.takeScreenshot()` and save it to a file
 
-### Visual Testing
+##  Visual Testing
 
 > TODO
 
-#### 💎 Execise 3.3: Integrating with Applitools
+###  💎 Execise 3.3: Integrating with Applitools
 
 > TODO
 
-<!-- ## Chapter 4: Integrating with CI / CD, and practicing TDD
+<!-- #  Chapter 4: Integrating with CI / CD, and practicing TDD
 
-#### 💎 Execise 4.1:
+###  💎 Execise 4.1:
 
-##### Deploying to Netlify (Staging)
+####  Deploying to Netlify (Staging)
 
 We'll be using [Netlify](https://netlify.com) to deploy our application. Netlify comes with CI/CD built in, one of the cool features they have is that when every you push a change to a branch or create a PR, Netlify will deploy a "staging" URL for you to preview the changes.
 
@@ -671,7 +671,7 @@ Netlify CI/CD is now configured!
 
 ---
 
-## What is a good test?
+#  What is a good test?
 
 A good test covers only a single hypothesis (a software requirement).
 
@@ -681,14 +681,14 @@ A good test is deterministics / repeatable, i.e. given the same environment and 
 
 ---
 
-## Alternatives
+#  Alternatives
 
-### Unit test frameworks
+##  Unit test frameworks
 
 -   Mocha : Basic stuff, but really flexible, intended for plug and play with other assertion libraries
 -   Jasmine : Batteries included (bdd-style expect assertions are built-in)
 
-### Assertion Libraries:
+##  Assertion Libraries:
 
 -   NodeJS's built in assert module
     -   Not very rich in terms of APIs, and some issues with exception assertion
@@ -696,18 +696,16 @@ A good test is deterministics / repeatable, i.e. given the same environment and 
 -   expect.js - just the bdd-style `expect` syntax
 -   Chai - supports `should`, `expect` and `assert`.
 
-## Assertion Libraries for testing REST APIs:
+##  Assertion Libraries for testing REST APIs:
 
 -   Chakram: Pretty nice syntax too (though for the purpose of the workshop, )
 -   chai-http
 
-###
-
 ---
 
-## Solutions
+#  Solutions
 
-### 💎 Execise 1.1: Hello Pikachu
+##  💎 Execise 1.1: Hello Pikachu
 
 ```javascript
 const Pokemon = require("../models/Pokemon")
@@ -724,7 +722,7 @@ describe("Pokemon", function() {
 })
 ```
 
-### 💎 Execise 1.2: Using `should` syntax
+##  💎 Execise 1.2: Using `should` syntax
 
 ```javascript
 it("should set name when value is present", function() {
@@ -734,7 +732,7 @@ it("should set name when value is present", function() {
 })
 ```
 
-### 💎 Execise 1.3: Using `expect` syntax
+##  💎 Execise 1.3: Using `expect` syntax
 
 ```javascript
 it("should set name when value is present", function() {
@@ -744,7 +742,7 @@ it("should set name when value is present", function() {
 })
 ```
 
-### 💎 Execise 1.4: Using `assert.throws` to test exceptions
+##  💎 Execise 1.4: Using `assert.throws` to test exceptions
 
 ```javascript
 it("throw error when value is empty", function() {
@@ -755,7 +753,7 @@ it("throw error when value is empty", function() {
 })
 ```
 
-### 💎 Execise 1.5: Testing promises
+##  💎 Execise 1.5: Testing promises
 
 ```javascript
 const Pokemon = require("../models/Pokemon")
@@ -784,7 +782,7 @@ describe("Pokedex", function() {
 })
 ```
 
-### 💎 Execise 1.6: Testing callback
+##  💎 Execise 1.6: Testing callback
 
 ```javascript
 describe("#save_callback()", function() {
@@ -808,7 +806,7 @@ describe("#save_callback()", function() {
 })
 ```
 
-### 💎 Execise 1.7: Writing hooks to setup and teardown tests
+##  💎 Execise 1.7: Writing hooks to setup and teardown tests
 
 ```javascript
 describe("Pokedex", function() {
@@ -832,7 +830,7 @@ describe("Pokedex", function() {
 })
 ```
 
-### 💎 Execise 2.1: Writing an API test
+##  💎 Execise 2.1: Writing an API test
 
 ```javascript
 describe("/api/pokemon/get", function() {
@@ -879,7 +877,7 @@ describe("/api/pokemons/add", function() {
 })
 ```
 
-### 💎 Execise 2.2: Resetting the web server between tests
+##  💎 Execise 2.2: Resetting the web server between tests
 
 ```javascript
 describe("API tests", function() {
@@ -907,7 +905,7 @@ describe("API tests", function() {
 })
 ```
 
-#### 💎 Execise 2.3: Seeding the test database between tests
+###  💎 Execise 2.3: Seeding the test database between tests
 ```javascript
 process.env.NODE_ENV = "test"
 
@@ -962,7 +960,7 @@ describe("API tests", function() {
 })
 ```
 
-### 💎 Execise 3.1: Testing with UI-licious
+##  💎 Execise 3.1: Testing with UI-licious
 ```javascript
 I.goTo("https://93c6059e.ngrok.io/") // UI-licious needs a public url to access your application
 I.fill("Name", "Pikachu")
@@ -973,7 +971,7 @@ UI.context((".pokemon-list"), () => {
 })
 ```
 
-### 💎 Execise 3.2: Testing with webdriver.io
+##  💎 Execise 3.2: Testing with webdriver.io
 
 Solution without screenshots:
 
@@ -1005,16 +1003,16 @@ describe("End-to-end acceptance tests", function() {
 })
 ```
 
-### 💎 Execise 3.3: Integrating with Applitools
+##  💎 Execise 3.3: Integrating with Applitools
 ```
 
 ```
 
 --- 
 
-## FYI
+#  FYI
 
-#### What's BDD?
+###  What's BDD?
 
 One common issue with unit tests is
 
