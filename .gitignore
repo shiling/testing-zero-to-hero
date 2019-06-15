@@ -62,3 +62,6 @@ typings/
 
 # storage
 storage/*.sqlite3
+
+# Netlify
+.netlify/
