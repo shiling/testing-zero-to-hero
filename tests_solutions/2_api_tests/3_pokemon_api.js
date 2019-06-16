@@ -12,11 +12,13 @@ describe("API tests", function() {
 	const app = require("../../app")
 	// let server
 
+	// Exercise 2.2
 	// before(function(done) {
 	// 	// start the server before running the tests
 	// 	server = app.listen(PORT, done)
 	// })
 
+	// Exercise 2.3
 	let knex
 	before(async function() {
 		const config = require("../../knexfile.js")[process.env.NODE_ENV]
@@ -40,7 +42,7 @@ describe("API tests", function() {
 	// 	})
 	// })
 
-	// post methods
+	// Exercise 2.1
 	describe("/api/pokemons/add", function() {
 		it("should add pokemon", async function() {
 			const res = await chai
@@ -63,7 +65,7 @@ describe("API tests", function() {
 		})
 	})
 
-	// Exercise 5: Testing APIs with chakram
+	// Exercise 2.1
 	describe("/api/pokemon/get", function() {
 		it("should retrieve all pokemons (callback)", function(done) {
 			// callback

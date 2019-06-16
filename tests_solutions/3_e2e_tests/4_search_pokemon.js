@@ -1,3 +1,4 @@
+// Exercise 3.2
 describe("End-to-end acceptance tests", function() {
 	
 	it("Search for Pikachu", function() {

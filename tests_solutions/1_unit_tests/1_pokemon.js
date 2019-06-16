@@ -10,7 +10,7 @@ describe("Pokemon", function() {
 	describe("#setName()", function() {
 		// module
 
-		// Exercise 1: using NodeJS's assertion library
+		// Exercise 1.1
 		it("(assert) set name when value is present", function() {
 			// test
 			var pokemon = new Pokemon()
@@ -18,21 +18,21 @@ describe("Pokemon", function() {
 			assert.equal(pokemon.name, "Pikachu")
 		})
 
-		// Exercise 1: Using "should" BDD-style assertion library
+		// Exercise 1.2
 		it("(should) set name when value is present", function() {
 			var pokemon = new Pokemon()
 			pokemon.setName("Pikachu")
 			pokemon.should.have.property("name", "Pikachu")
 		})
 
-		// Exercise 1: Using "expect" BDD-style assertion library
+		// Exercise 1.3
 		it("(expect) name to be set when value is present", function() {
 			var pokemon = new Pokemon()
 			pokemon.setName("Pikachu")
 			expect(pokemon.name).to.equal("Pikachu")
 		})
 
-		// Exercise 2: Negative testing
+		// Exercise 1.4
 		it("throw error when value is empty", function() {
 			// test exception
 			assert2.throws(function() {

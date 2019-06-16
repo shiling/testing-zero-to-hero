@@ -11,23 +11,20 @@ var assert2 = require("chai").assert
 describe("Pokedex", function() {
 	let pokedex = new Pokedex()
 
-	// Exercise 4: Using hooks to setup and teardown tests
+	// Exercise 1.7
 	before(function() {
 		return pokedex.connect("./storage/test.sqlite3")
 	})
 
 	beforeEach(function() {
 		return pokedex.deleteAll()
-		// return pokedex.dropTable().then(() => {
-		// 	return pokedex.createTable()
-		// })
 	})
 
 	after(function() {
 		return pokedex.close()
 	})
 
-	// Exercise 3.2: testing promises
+	// Exercise 1.5
 	describe("#save()", function() {
 		it("should add pokemon", async function() {
 			let pokemon = new Pokemon()
@@ -53,6 +50,7 @@ describe("Pokedex", function() {
 		})
 	})
 
+	// Exercise 1.6
 	describe("#save_callback()", function() {
 		it("should add pokemon", function(done) {
 			let pokemon = new Pokemon()
