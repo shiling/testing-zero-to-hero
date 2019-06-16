@@ -546,6 +546,21 @@ This will install and then start ngrok to connect to your localhost application 
 
 ![ngrok](./docs/ngrok.png)
 
+👉 (Alternative to ngrok) Using serveo.net to expose your localhost application via SSH
+
+```
+ssh -R 80:localhost:3000 serveo.net
+```
+
+You will see something like the following
+
+```
+Forwarding HTTP traffic from https://tectum.serveo.net
+Press g to start a GUI session and ctrl-c to quit.
+```
+
+This has the advantage of not needing another NPM install globally, and better performance. It however uses SSH which maybe block in certain corporate environments.
+
 👉 Go to https://snippets.uilicious.com/ to access the free edition of UI-licious. It's like CodePen, but for testing.
 
 👉 Write a test to:
