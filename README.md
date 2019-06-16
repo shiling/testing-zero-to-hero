@@ -3,21 +3,21 @@
 __Table of Contents__
 - [Setup](#setup)
 - [Chapter 1 - Unit Testing](#chapter-1--unit-testing)
-    - [Exercise 1.1](#)
-    - [Exercise 1.2](#)
-    - [Exercise 1.3](#)
-    - [Exercise 1.4](#)
-    - [Exercise 1.5](#)
-    - [Exercise 1.6](#)
-    - [Exercise 1.7](#)
+    - [Exercise 1.1: Hello Pikachu](#-execise-11-hello-pikachu)
+    - [Exercise 1.2: Using Should Syntax](#-execise-12-using-should-syntax)
+    - [Exercise 1.3: Using Expect Syntax](#-execise-13-using-expect-syntax)
+    - [Exercise 1.4: Testing Exceptions](#-execise-14-using-assertthrows-to-test-exceptions)
+    - [Exercise 1.5: Testing Promises](#-execise-15-testing-promises)
+    - [Exercise 1.6: Testing Callbacks](#-execise-16-testing-callback)
+    - [Exercise 1.7: Using Hooks to Setup and Teardown Tests](#-execise-17-writing-hooks-to-setup-and-teardown-tests)
 - [Chapter 2 - API Testing](#chapter-2--api-testing)
-    - [Exercise 2.1](#)
-    - [Exercise 2.2](#)
-    - [Exercise 2.3](#)
+    - [Exercise 2.1: Writing an API tests](#-execise-21-writing-an-api-test)
+    - [Exercise 2.2: Resetting the web server between tests](#-execise-22-resetting-the-web-server-between-tests)
+    - [Exercise 2.3: Seeding the test database between tests](#-execise-23-seeding-the-test-database-between-tests)
 - [Chapter 3 - UI Testing](#chapter-3--end-to-end-acceptance-testing)
-    - [Exercise 3.1](#)
-    - [Exercise 3.2](#)
-    - [Exercise 3.3](#)
+    - [Exercise 3.1: Testing with UI-licious](#-execise-31-testing-with-ui-licious)
+    - [Exercise 3.2: Testing with Webdriver.io](#-execise-32-testing-with-webdriverio)
+    - [Exercise 3.3: Integrating with Applitools](#-execise-33-integrating-with-applitools)
 - [Solutions](#solutions)
   - [Exercise 1.1](#-execise-11-hello-pikachu-1)
   - [Exercise 1.2](#-execise-12-using-should-syntax-1)
@@ -26,12 +26,12 @@ __Table of Contents__
   - [Exercise 1.5](#-execise-15-testing-promises-1)
   - [Exercise 1.6](#-execise-16-testing-callback-1)
   - [Exercise 1.7](#-execise-17-writing-hooks-to-setup-and-teardown-tests-1)
-  - [Exercise 2.1](#)
-  - [Exercise 2.2](#)
-  - [Exercise 2.3](#)
+  - [Exercise 2.1](#-execise-21-writing-an-api-test-1)
+  - [Exercise 2.2](#-execise-22-resetting-the-web-server-between-tests-1)
+  - [Exercise 2.3](#-execise-22-resetting-the-web-server-between-tests-1)
   - [Exercise 3.1](#-execise-31-testing-with-ui-licious-1)
   - [Exercise 3.2](#-execise-32-testing-with-webdriverio-1)
-  - [Exercise 3.3](#)
+  - [Exercise 3.3](#-execise-33-integrating-with-applitools-1)
 
 #  Introduction
 
@@ -525,7 +525,7 @@ To perform acceptance testing, we need to simulate user stories, which should in
 
 We can use GUI automation tools to automate acceptance testing.
 
-The easiest way to test your web application is with UI-licious. ;)
+The easiest way to test your web application is with [UI-licious](https://uilicious.com). ;)
 
 👉 Start the server:
 
@@ -705,6 +705,17 @@ A good test is deterministics / repeatable, i.e. given the same environment and 
 
 -   Chakram: Pretty nice syntax too (though for the purpose of the workshop, )
 -   chai-http
+
+---
+
+#  FYI
+
+###  What's BDD?
+
+One common issue with unit tests is
+
+BDD stands for Behavior-Driven Development, which is a style of writing tests in a way that describes how the application **should** behave or is **expected** to behave, instead of describing how it is implemented.
+
 
 ---
 
@@ -1013,12 +1024,3 @@ describe("End-to-end acceptance tests", function() {
 
 ```
 
---- 
-
-#  FYI
-
-###  What's BDD?
-
-One common issue with unit tests is
-
-BDD stands for Behavior-Driven Development, which is a style of writing tests in a way that describes how the application **should** behave or is **expected** to behave, instead of describing how it is implemented.
