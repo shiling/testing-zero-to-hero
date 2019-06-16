@@ -627,6 +627,11 @@ npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-st
 - Validate that there is one result
 - Validate that there is the first result has the title "Pikachu"
 
+👉 Run your tests using this command:
+```
+npm run test:e2e
+```
+
 👉 (Optional) Take screenshots with `browser.takeScreenshot()` and save it to a file
 
 ##  Visual Testing
