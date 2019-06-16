@@ -610,10 +610,12 @@ npm install selenium-standalone --save-dev
 
 ####  Setting up webdriverio 
 
+We're going to use [Webdriver.io v4](http://v4.webdriver.io/) instead of the latest v5.
+
 👉 Install wdio which is the test runner for webdriver.io
 
 ```
-npm install @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/selenium-standalone-service @wdio/spec-reporter @wdio/sync selenium-standalone --save-dev
+npm install webdriverio@4.14.1 wdio-spec-reporter wdio-mocha-framework wdio-selenium-standalone-service --save-dev
 ```
 
 👉 Copy "wdio.conf.sample.js" to "wdio.conf.js"
