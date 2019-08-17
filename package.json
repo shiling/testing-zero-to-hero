@@ -7,7 +7,8 @@
 		"test": "mocha \"./tests/**/*.js\" --exclude \"./tests/3_e2e_tests/**/*.js\" --exit",
 		"test:unit": "mocha \"./tests/1_unit_tests/**/*.js\" --exit",
 		"test:api": "mocha \"./tests/2_api_tests/**/*.js\" --exit",
-		"test:e2e": "wdio ./wdio.conf.js"
+		"test:e2e": "wdio ./wdio.conf.js",
+		"reseed": "knex migrate:up --env test && knex seed:run --env test"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
