@@ -788,7 +788,7 @@ it("throw error when value is empty", function() {
 ##  💎 Execise 1.5: Testing promises
 
 ```javascript
-const Pokemon = require("../models/Pokemon")
+const Pokemon = require("../../models/Pokemon")
 const Pokedex = require("../db/Pokedex")
 const expect = require("chai").expect
 
