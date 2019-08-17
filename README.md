@@ -355,7 +355,7 @@ In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the dat
 
 👉 For now, run the commands below in your console to setup and seed the database for development:
 
-```
+```bash
 npm install knex -g
 knex migrate:up --env development
 knex seed:run --env development
@@ -365,11 +365,17 @@ We'll come to setting up and seeding the database for test environments in later
 
 👉 Start the server:
 
-```
+```bash
 npm start
 ```
 
 The application will be loaded at [http://localhost:3000](http://localhost:3000)
+
+***Run these commands to prepare your test database:***
+
+```bash
+knex migrate:up --env test
+```
 
 ##  Writing API tests
 
@@ -381,7 +387,7 @@ We're going to use the [`chai-http`](https://www.chaijs.com/plugins/chai-http/) 
 
 👉 Install `chai-http`
 
-```
+```bash
 npm install chai-http --save-dev
 ```
 
