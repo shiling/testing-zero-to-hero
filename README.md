@@ -81,7 +81,7 @@ npm install mocha --save-dev
 ```json
 {
     "scripts": {
-        "test": "mocha \"./tests/*.js\" --exit"
+        "test": "mocha \"./tests/**/*.js\" --exit"
     }
 }
 ```
@@ -109,7 +109,7 @@ In this exercise, we're going to try writing our first unit test for the `Pokemo
 👉 Import the Pokemon class:
 
 ```javascript
-const Pokemon = require("../models/Pokemon")
+const Pokemon = require("../../models/Pokemon")
 ```
 
 👉 Use `describe` to create a test suite for the `Pokemon` class and for the `setName` method, to group related tests:
@@ -139,7 +139,7 @@ describe("Pokemon", function() {
 
 👉 Write the steps to perform `setName` method given a non-empty string:
 
-```
+```javascript
 it("should set name when passed non-empty string", function() {
     // Steps to perform your test here:
 
@@ -200,7 +200,7 @@ Chai also supports a lot of [plugins](https://www.chaijs.com/plugins/) to help y
 
 👉 Install Chai:
 
-```
+```bash
 npm install chai --save-dev
 ```
 
@@ -230,7 +230,7 @@ In this exercise, let's try out Chai's `expect` syntax.
 Import Chai's `expect` library:
 
 ```javascript
-const expect = require("expect").expect
+const expect = require("chai").expect
 ```
 
 `expect` allows you to write assertions like this:
