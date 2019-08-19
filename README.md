@@ -81,7 +81,7 @@ npm install mocha --save-dev
 ```json
 {
     "scripts": {
-        "test": "mocha \"./tests/*.js\" --exit"
+        "test": "mocha \"./tests/**/*.js\" --exit"
     }
 }
 ```
@@ -109,7 +109,7 @@ In this exercise, we're going to try writing our first unit test for the `Pokemo
 👉 Import the Pokemon class:
 
 ```javascript
-const Pokemon = require("../models/Pokemon")
+const Pokemon = require("../../models/Pokemon")
 ```
 
 👉 Use `describe` to create a test suite for the `Pokemon` class and for the `setName` method, to group related tests:
@@ -139,7 +139,7 @@ describe("Pokemon", function() {
 
 👉 Write the steps to perform `setName` method given a non-empty string:
 
-```
+```javascript
 it("should set name when passed non-empty string", function() {
     // Steps to perform your test here:
 
@@ -200,7 +200,7 @@ Chai also supports a lot of [plugins](https://www.chaijs.com/plugins/) to help y
 
 👉 Install Chai:
 
-```
+```bash
 npm install chai --save-dev
 ```
 
@@ -230,7 +230,7 @@ In this exercise, let's try out Chai's `expect` syntax.
 Import Chai's `expect` library:
 
 ```javascript
-const expect = require("expect").expect
+const expect = require("chai").expect
 ```
 
 `expect` allows you to write assertions like this:
@@ -355,7 +355,7 @@ In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the dat
 
 👉 For now, run the commands below in your console to setup and seed the database for development:
 
-```
+```bash
 npm install knex -g
 knex migrate:up --env development
 knex seed:run --env development
@@ -365,11 +365,17 @@ We'll come to setting up and seeding the database for test environments in later
 
 👉 Start the server:
 
-```
+```bash
 npm start
 ```
 
 The application will be loaded at [http://localhost:3000](http://localhost:3000)
+
+***Run these commands to prepare your test database:***
+
+```bash
+knex migrate:up --env test
+```
 
 ##  Writing API tests
 
@@ -381,7 +387,7 @@ We're going to use the [`chai-http`](https://www.chaijs.com/plugins/chai-http/) 
 
 👉 Install `chai-http`
 
-```
+```bash
 npm install chai-http --save-dev
 ```
 
