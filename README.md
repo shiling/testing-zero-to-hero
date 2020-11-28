@@ -795,7 +795,7 @@ it("throw error when value is empty", function() {
 
 ```javascript
 const Pokemon = require("../../models/Pokemon")
-const Pokedex = require("../db/Pokedex")
+const Pokedex = require("../../db/Pokedex")
 const expect = require("chai").expect
 
 describe("Pokedex", function() {
