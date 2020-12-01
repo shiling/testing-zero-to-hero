@@ -250,6 +250,8 @@ It's important to also test negative scenarios, as user can make mistakes, and t
 
 👉 Using Chai's `assert.throws`, test if an appropriate error is thrown when an empty string is passed to the `setName` method.
 
+👉 Remember add `const assert = require("chai").assert` to import Chai's assert library.
+
 ##  Testing asynchronous functions (callbacks and promises)
 
 Mocha supports testing asynchronous functions like callbacks and promises.
@@ -295,9 +297,19 @@ it("should make sandwich", async function() {
 
 ###  💎 Execise 1.5: Testing promises
 
-For the following exericses, let's test the `Pokedex` which provides methods to store information about our pokemons to a database. All of the Pokedex methods are asynchronous, and returns Promises.
+For the following exercises, let's test the `Pokedex` which provides methods to store information about our pokemons to a database. All of the Pokedex methods are asynchronous, and returns Promises.
 
-Let's test the `Pokedex.save()` method, which saves a pokemon to the database. If the pokemon does not have an id, the save method will set the id on the pokemon object. The `Pokedex.save()` method returns a Promise.
+In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the database for development and test environments.
+
+👉 For now, run the commands below in your console to setup the test database:
+
+```bash
+node_modules/.bin/knex migrate:up --env test
+```
+
+👉 
+
+👉 Let's test the `Pokedex.save()` method, which saves a pokemon to the database. If the pokemon does not have an id, the save method will set the id on the pokemon object. The `Pokedex.save()` method returns a Promise.
 
 👉 Use `async/await` to wait for the promise returned by the `Pokedex.save` method to resolve.
 
@@ -356,9 +368,8 @@ In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the dat
 👉 For now, run the commands below in your console to setup and seed the database for development:
 
 ```bash
-npm install knex -g
-knex migrate:up --env development
-knex seed:run --env development
+node_modules/.bin/knex migrate:up --env development
+node_modules/.bin/knex seed:run --env development
 ```
 
 We'll come to setting up and seeding the database for test environments in later exercises.
@@ -374,7 +385,7 @@ The application will be loaded at [http://localhost:3000](http://localhost:3000)
 ***Run these commands to prepare your test database:***
 
 ```bash
-knex migrate:up --env test
+node_modules/.bin/knex migrate:up --env test
 ```
 
 ##  Writing API tests
