@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('testing-from-zero-to-hero:server');
 var http = require('http');
+const { add } = require('lodash')
 
 /**
  * Get port from environment and store in Express.
@@ -87,4 +88,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log("Application started at http://localhost:" + port)
 }
