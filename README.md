@@ -109,7 +109,7 @@ In this exercise, we're going to try writing our first unit test for the `Pokemo
 👉 Import the Pokemon class:
 
 ```javascript
-const Pokemon = require("../../models/Pokemon")
+import Pokemon from "../../src/models/Pokemon.js";
 ```
 
 👉 Use `describe` to create a test suite for the `Pokemon` class and for the `setName` method, to group related tests:
@@ -156,7 +156,7 @@ NodeJS comes with an assertion library built-in - ["assert"](https://nodejs.org/
 👉 Import the "assert" module
 
 ```javascript
-const assert = require("assert")
+import assert from "assert"
 ```
 
 👉 Now, let's add an assertion to make sure that the name of the pokemon is equal to the value we just set:
@@ -175,7 +175,7 @@ it("should set name when passed non-empty string", function() {
 })
 ```
 
-👉 When you are done, run `npm tests` in your console to run your tests.
+👉 When you are done, run `npm run test:unit` in your console to run your tests.
 
 ![Screenshot of test run](#)
 
@@ -196,41 +196,14 @@ Chai also supports a lot of [plugins](https://www.chaijs.com/plugins/) to help y
 -   [chai-file](https://www.chaijs.com/plugins/chai-files/) for testing files
 -   [chai-doge](https://www.chaijs.com/plugins/chai-doge/) wow, very doge-style language chains for Chai, much silly
 
-###  💎 Execise 1.2: Using `should` syntax
-
-👉 Install Chai:
-
-```bash
-npm install chai --save-dev
-```
-
-In this exercise, let's try out Chai's `should` syntax.
-
-Import Chai's `should` library:
-
-```javascript
-const should = require("chai").should() // actually call the function
-```
-
-_Note that you need to actually call the should function to import it._
-
-`should` extends the Object class to allow you to write assertions like this:
-
--   Type assertions : `pokemon.name.should.be.a("string")`
--   Value assertions : `pokemon.name.should.be.equal("Pikachu")`
--   Length assertions : `pokemon.types.should.have.lengthOf(2)`
--   and [more...](https://www.chaijs.com/api/bdd/)
-
-👉 Write the previous test using the `should` syntax.
-
-###  💎 Execise 1.3: Using `expect` syntax
+###  💎 Execise 1.2: Using `expect` syntax
 
 In this exercise, let's try out Chai's `expect` syntax.
 
 Import Chai's `expect` library:
 
 ```javascript
-const expect = require("chai").expect
+import {expect} from "chai";
 ```
 
 `expect` allows you to write assertions like this:
@@ -246,133 +219,15 @@ const expect = require("chai").expect
 
 It's important to also test negative scenarios, as user can make mistakes, and the application is expect to gracefully handle these accidents by showing appropriate errors to help users identify the problem and correct themselves.
 
-###  💎 Execise 1.4: Using `assert.throws` to test exceptions
+###  💎 Execise 1.3: Using `to.throw` to test exceptions
 
-👉 Using Chai's `assert.throws`, test if an appropriate error is thrown when an empty string is passed to the `setName` method.
-
-👉 Remember add `const assert = require("chai").assert` to import Chai's assert library.
-
-##  Testing asynchronous functions (callbacks and promises)
-
-Mocha supports testing asynchronous functions like callbacks and promises.
-
-When running asynchronous tests with callbacks, you need tell Mocha when the test is complete by invoking a callback (usually called `done`). Passing an error to the `done` callback will cause the test to fail.
-
-```javascript
-it("should make sandwich", function(done) {
-    chef.makeSandwich(function(err, sandwich) {
-        if (err) {
-            done(err)
-        } else {
-            expect(sandwich).to.exist
-            done()
-        }
-    })
-})
-```
-
-To handle promises, you can simply return the promise, and Mocha will automatially wait for the Promise to resolve.
-
-```javascript
-it("should make sandwich", function() {
-    return chef
-        .makeSandwich()
-        .then((sandwich) => {
-            expect(sandwich).to.exist
-        })
-        .catch(function(err) {
-            throw err
-        })
-})
-```
-
-Alternatively, you can use the `async/await` syntax, which can make the test neater:
-
-```javascript
-it("should make sandwich", async function() {
-    const sandwich = await chef.makeSandwich
-    expect(sandwich).to.exist
-})
-```
-
-###  💎 Execise 1.5: Testing promises
-
-For the following exercises, let's test the `Pokedex` which provides methods to store information about our pokemons to a database. All of the Pokedex methods are asynchronous, and returns Promises.
-
-In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the database for development and test environments.
-
-👉 For now, run the commands below in your console to setup the test database:
-
-```bash
-node_modules/.bin/knex migrate:up --env test
-```
-
-👉 
-
-👉 Let's test the `Pokedex.save()` method, which saves a pokemon to the database. If the pokemon does not have an id, the save method will set the id on the pokemon object. The `Pokedex.save()` method returns a Promise.
-
-👉 Use `async/await` to wait for the promise returned by the `Pokedex.save` method to resolve.
-
-👉 If you have extra time, write tests for:
-
--   `Pokedex.save` : Update an existing pokemon in the pokedex
--   `Pokedex.get` : Get a pokemon by ID
--   `Pokedex.getByName` : Get a pokemon by name
--   `Pokedex.find` : Find pokemons by attributes
-
-###  💎 Execise 1.6: Testing callback
-
-For the purpose of illustrating how to test callbacks, a callback version of `save()` is implemented as `save_callback()`.
-
-👉 Write a test for `Pokedex.save_callback`
-
-##  Hooks
-
-Mocha provides [hooks](https://mochajs.org/#hooks) for us to run code before and after tests.
-
-These are useful for setting up and resetting the test environment between tests. We want to do this in order to ensure that the tests are not affected by the preceding tests. A good test is a test that is repeatable.
-
-Available hooks:
-
--   `before(function(){})` - Runs once before all the tests in a `describe` block
--   `beforeEach(function(){})` - Runs before each the tests in a `describe` block
--   `afterEach(function(){})` - Runs after each the tests in a `describe` block
--   `after(function(){})` - Runs once after all the tests in a `describe` block
-
-Hooks handle asychronous codes (promises and callbacks) like regular test cases.
-
-###  💎 Execise 1.7: Writing hooks to setup and teardown tests
-
-👉 Write a `beforeEach` hook to clear the database between tests.
-
-Hint: Just drop the table, and create it again with the code below:
-
-```javascript
-return pokedex.dropTable().then(() => {
-    return pokedex.createTable()
-})
-```
-
-👉 Write a `before` hook to connect to the database
-
-👉 Write a `after` hook to close the database (it's always good to clean up before you leave!)
+👉 Using Chai's `expect(badFn).to.throw(error)`, test if an appropriate error is thrown when an empty string is passed to the `setName` method.
 
 #  Chapter 2 : API Testing
 
 Now, let's move one layer up and work on testing out APIs.
 
 ##  Setup
-
-In this lab, we'll be using [knex](https://knexjs.org) to setup and seed the database for development and test environments.
-
-👉 For now, run the commands below in your console to setup and seed the database for development:
-
-```bash
-node_modules/.bin/knex migrate:up --env development
-node_modules/.bin/knex seed:run --env development
-```
-
-We'll come to setting up and seeding the database for test environments in later exercises.
 
 👉 Start the server:
 
@@ -382,15 +237,9 @@ npm start
 
 The application will be loaded at [http://localhost:3000](http://localhost:3000)
 
-***Run these commands to prepare your test database:***
-
-```bash
-node_modules/.bin/knex migrate:up --env test
-```
-
 ##  Writing API tests
 
-Let's test the `GET /api/pokemons` API which lists the pokemons in the database, and allows you to search for pokemons by attributes.
+Let's test the `GET /api/pokedex/list` API which lists the pokemons in the database, and allows you to search for pokemons by attributes.
 
 ###  💎 Execise 2.1: Writing an API test
 
@@ -411,7 +260,7 @@ const chaiHttp = require("chai-http")
 chai.use(chaiHttp)
 ```
 
-👉 Write a test to retrieve all the pokemons using the `GET /api/pokemons` API, with the following assertions:
+👉 Write a test to retrieve all the pokemons using the `GET /api/pokedex/list` API, with the following assertions:
 
 -   Assert that the response has a status of 200
 -   Assert that the response has a "content-type" header of "application/json; charset=utf-8"
@@ -421,7 +270,7 @@ chai.use(chaiHttp)
 -   Assert that the name of the first pokemon is "Bulbasaur"
     💡 Hint: You'll need [📖 this](https://www.chaijs.com/plugins/chai-http/)
 
-👉 Write a test to add a pokemon using the `POST /api/pokemons/add` API.
+👉 Write a test to add a pokemon using the `POST /api/pokedex/list` API.
 
 ##  Setting up the environment for API testing
 

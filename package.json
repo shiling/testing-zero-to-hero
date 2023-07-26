@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests",
+    "test:unit": "mocha tests/1_unit_tests"
   },
   "repository": {
     "type": "git",

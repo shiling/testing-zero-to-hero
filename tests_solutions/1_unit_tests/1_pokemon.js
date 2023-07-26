@@ -1,9 +1,6 @@
-const Pokemon = require("../../models/Pokemon")
-
-const assert = require("assert")
-const should = require("chai").should() // actually call the function
-const expect = require("chai").expect
-const assert2 = require("chai").assert
+import Pokemon from "../../src/models/Pokemon.js";
+import assert from "assert"
+import {expect} from "chai";
 
 describe("Pokemon", function() {
 	// module
@@ -15,30 +12,26 @@ describe("Pokemon", function() {
 			// test
 			var pokemon = new Pokemon()
 			pokemon.setName("Pikachu")
+			// Reference: https://nodejs.org/api/assert.html
 			assert.equal(pokemon.name, "Pikachu")
 		})
 
 		// Exercise 1.2
-		it("(should) set name when value is present", function() {
-			var pokemon = new Pokemon()
-			pokemon.setName("Pikachu")
-			pokemon.should.have.property("name", "Pikachu")
-		})
-
-		// Exercise 1.3
 		it("(expect) name to be set when value is present", function() {
 			var pokemon = new Pokemon()
 			pokemon.setName("Pikachu")
+			// Reference: https://www.chaijs.com/api/bdd/#method_equal
 			expect(pokemon.name).to.equal("Pikachu")
 		})
 
-		// Exercise 1.4
+		// Exercise 1.3
 		it("throw error when value is empty", function() {
 			// test exception
-			assert2.throws(function() {
+			// Reference: https://www.chaijs.com/api/bdd/#method_throw
+			expect(function() {
 				var pokemon = new Pokemon()
 				pokemon.setName("")
-			}, "name cannot be empty")
+			}).to.throw("name cannot be empty")
 		})
 	})
 })
