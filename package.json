@@ -38,5 +38,8 @@
     "fastify": "^4.20.0",
     "mocha": "^10.2.0"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": "18.x"
+  }  
 }
