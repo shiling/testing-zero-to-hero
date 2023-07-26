@@ -9,8 +9,9 @@
   },
   "scripts": {
     "start": "node src/main.js",
-    "test": "mocha tests",
-    "test:unit": "mocha tests/1_unit_tests"
+    "test": "mocha tests/**/**.test.js",
+    "test:unit": "mocha tests/1_unit_tests",
+    "test:api": "mocha tests/2_api_tests"
   },
   "repository": {
     "type": "git",
