@@ -96,7 +96,10 @@ fastify.post('/api/pokedex/:id/delete', async function handler (request, reply) 
 // Run the server
 //-----------------------------------------------------
 try {
-  await fastify.listen({ port: (process.env["$PORT"] || process.env.PORT || 3000) })
+  await fastify.listen({ 
+    host: (process.env.HOST || "0.0.0.0"),
+    port: (process.env["$PORT"] || process.env.PORT || 3000) 
+  })
 } catch (err) {
   fastify.log.error(err)
   process.exit(1)
