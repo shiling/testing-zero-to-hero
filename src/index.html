@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pokedex</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- Vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+
+	<style>
+		table td {
+			vertical-align: middle;
+		}
+	</style>
+	
+</head>
+<body class="p-5">
+
+	<div id="app">
+		<h1 class="mb-3">Pokedex</h1>
+		<div id="greeting" class="mb-3">Welcome {{username}}!</div>
+		<div class="mb-3">
+			<a class="btn btn-primary" href="/addPokemon">Add Pokemon</a>
+		</div>
+		<div class="row mb-3">
+			<div class="col">
+				<input v-model="filters.name" type="text" class="form-control" placeholder="Search by name">
+			</div>
+			<div class="col">
+				<select v-model="filters.type" name="types" class="form-control">
+					<option value="">--Filter type--</option>
+					<option value="bug">Bug</option>
+					<option value="electric">Electric</option>
+					<option value="dark">Dark</option>
+					<option value="dragon">Dragon</option>
+					<option value="fairy">Fairy</option>
+					<option value="fighting">Fighting</option>
+					<option value="fire">Fire</option>
+					<option value="flying">Flying</option>
+					<option value="ghost">Ghost</option>
+					<option value="grass">Grass</option>
+					<option value="ground">Ground</option>
+					<option value="ice">Ice</option>
+					<option value="normal">Normal</option>
+					<option value="poison">Poison</option>
+					<option value="psychic">Psychic</option>
+					<option value="rock">Rock</option>
+					<option value="steel">Steel</option>
+					<option value="water">Water</option>
+				</select>
+			</div>
+		</div>
+		<table id="pokedex-table" class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Picture</th>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Hp</th>
+					<th>Attack</th>
+					<th>Defense</th>
+					<th>Sp Attack</th>
+					<th>Sp Defense</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="pokemon in displayedPokemons">
+					<td>{{pokemon.id}}</td>
+					<td>
+						<img :src="'https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/' + pokemon.id + '.png?raw=true'" alt="">
+					</td>
+					<td>{{pokemon.name}}</td>
+					<td>{{pokemon.types}}</td>
+					<td>{{pokemon.hp}}</td>
+					<td>{{pokemon.attack}}</td>
+					<td>{{pokemon.defense}}</td>
+					<td>{{pokemon.sp_attack}}</td>
+					<td>{{pokemon.sp_defense}}</td>
+					<td>
+						<!-- <a class="btn btn-secondary" :href="'/editPokemon?id=' + pokemon.id">Edit</a> -->
+						<button class="btn btn-warning" @click="deletePokemon(pokemon)">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	
+</body>
+</html>
+
+<script>
+
+
+	var app = new Vue({
+		el: '#app',
+		data: {
+			username: 'Ash',
+			pokemons: [],
+			filters: {
+				name: "",
+				type: ""
+			}
+		},
+		computed: {
+			displayedPokemons(){
+				return this.pokemons.filter((pokemon)=>{
+					if(this.filters.name !== ""){
+						if(!pokemon.name.toLowerCase().includes(this.filters.name.trim().toLowerCase())){
+							return false;
+						}
+					}
+					if(this.filters.type !== ""){
+						let matches = pokemon.types.filter((type)=>{
+							return type.toLowerCase() === this.filters.type.trim().toLowerCase()
+						})
+						if(matches.length === 0){
+							return false
+						}
+					}
+					return true;
+				})
+			}
+		},
+		mounted(){
+			this.listPokemons()
+		},
+		methods: {
+			async listPokemons(){
+				let res = await axios.get("/api/pokedex/list")			
+				this.pokemons = res.data
+			},
+			async deletePokemon(pokemon){
+				let proceed = confirm(`Are you share you want to delete #${pokemon.id} '${pokemon.name}'?`)
+				if(proceed){
+					let res = await axios.post("/api/pokedex/" + pokemon.id + "/delete")
+					await this.listPokemons()
+				}
+			}
+		}
+	})
+</script>

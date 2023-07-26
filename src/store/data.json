@@ -1,0 +1,145 @@
+[
+  {
+    "id": 1,
+    "name": "Bulbasaur",
+    "types": ["Grass", "Poison"],
+    "hp": 45,
+    "attack": 49,
+    "defense": 49,
+    "sp_attack": 65,
+    "sp_defense": 65,
+    "speed": 45
+  },
+  {
+    "id": 2,
+    "name": "Ivysaur",
+    "types": ["Grass", "Poison"],
+    "hp": 60,
+    "attack": 62,
+    "defense": 63,
+    "sp_attack": 80,
+    "sp_defense": 80,
+    "speed": 60
+  },
+  {
+    "id": 4,
+    "name": "Charmander",
+    "types": ["Fire"],
+    "hp": 39,
+    "attack": 52,
+    "defense": 43,
+    "sp_attack": 60,
+    "sp_defense": 50,
+    "speed": 65
+  },
+  {
+    "id": 5,
+    "name": "Charmeleon",
+    "types": ["Fire"],
+    "hp": 58,
+    "attack": 64,
+    "defense": 58,
+    "sp_attack": 80,
+    "sp_defense": 65,
+    "speed": 80
+  },
+  {
+    "id": 7,
+    "name": "Squirtle",
+    "types": ["Water"],
+    "hp": 44,
+    "attack": 48,
+    "defense": 65,
+    "sp_attack": 50,
+    "sp_defense": 64,
+    "speed": 43
+  },
+  {
+    "id": 10,
+    "name": "Caterpie",
+    "types": ["Bug"],
+    "hp": 45,
+    "attack": 30,
+    "defense": 35,
+    "sp_attack": 20,
+    "sp_defense": 20,
+    "speed": 45
+  },
+  {
+    "id": 11,
+    "name": "Metapod",
+    "types": ["Bug"],
+    "hp": 50,
+    "attack": 20,
+    "defense": 55,
+    "sp_attack": 25,
+    "sp_defense": 25,
+    "speed": 30
+  },
+  {
+    "id": 12,
+    "name": "Butterfree",
+    "types": ["Bug", "Flying"],
+    "hp": 60,
+    "attack": 45,
+    "defense": 50,
+    "sp_attack": 90,
+    "sp_defense": 80,
+    "speed": 70
+  },
+  {
+    "id": 13,
+    "name": "Weedle",
+    "types": ["Bug", "Poison"],
+    "hp": 40,
+    "attack": 35,
+    "defense": 30,
+    "sp_attack": 20,
+    "sp_defense": 20,
+    "speed": 50
+  },
+  {
+    "id": 14,
+    "name": "Kakuna",
+    "types": ["Bug", "Poison"],
+    "hp": 45,
+    "attack": 25,
+    "defense": 50,
+    "sp_attack": 25,
+    "sp_defense": 25,
+    "speed": 35
+  },
+  {
+    "id": 16,
+    "name": "Pidgey",
+    "types": ["Normal", "Flying"],
+    "hp": 40,
+    "attack": 45,
+    "defense": 40,
+    "sp_attack": 35,
+    "sp_defense": 35,
+    "speed": 56
+  },
+  {
+    "id": 17,
+    "name": "Pidgeotto",
+    "types": ["Normal", "Flying"],
+    "hp": 63,
+    "attack": 60,
+    "defense": 55,
+    "sp_attack": 50,
+    "sp_defense": 50,
+    "speed": 71
+  },
+  {
+    "id": 19,
+    "name": "Rattata",
+    "types": ["Normal"],
+    "hp": 30,
+    "attack": 56,
+    "defense": 35,
+    "sp_attack": 25,
+    "sp_defense": 35,
+    "speed": 72
+  }
+]

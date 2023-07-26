@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add a Pokemon</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- Axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- Vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+
+	<style>
+		table td {
+			vertical-align: middle;
+		}
+	</style>
+	
+</head>
+<body class="p-5">
+
+	<div id="app">
+		<div class="mb-3">
+			<a href="/"><- Return to Pokedex</a>
+		</div>
+		<h1 class="mb-3">Add a pokemon</h2>
+		<form style="max-width: 400px" @submit.prevent="addPokemon">
+			<div class="form-group mb-2">
+				<label for="input-pokemon-id">ID</label>
+				<input v-model="pokemon.id" id="input-pokemon-id" type="text" class="form-control" required/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-name">Name</label>
+				<input v-model="pokemon.name" d="input-pokemon-name" type="text" class="form-control" required/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-primary-type">Types</label>
+				<div class="row">
+					<div class="col">
+						<select v-model="pokemon.primaryType" id="input-pokemon-primary-type" name="types" class="form-control">
+							<option value="">--Select primary type--</option>
+							<option value="bug">Bug</option>
+							<option value="electric">Electric</option>
+							<option value="dark">Dark</option>
+							<option value="dragon">Dragon</option>
+							<option value="fairy">Fairy</option>
+							<option value="fighting">Fighting</option>
+							<option value="fire">Fire</option>
+							<option value="flying">Flying</option>
+							<option value="ghost">Ghost</option>
+							<option value="grass">Grass</option>
+							<option value="ground">Ground</option>
+							<option value="ice">Ice</option>
+							<option value="normal">Normal</option>
+							<option value="poison">Poison</option>
+							<option value="psychic">Psychic</option>
+							<option value="rock">Rock</option>
+							<option value="steel">Steel</option>
+							<option value="water">Water</option>
+						</select>
+					</div>
+					<div class="col">
+						<select v-model="pokemon.secondaryType" id="input-pokemon-secondary-type" name="types" class="form-control">
+							<option value="">--Select secondary type--</option>
+							<option value="bug">Bug</option>
+							<option value="electric">Electric</option>
+							<option value="dark">Dark</option>
+							<option value="dragon">Dragon</option>
+							<option value="fairy">Fairy</option>
+							<option value="fighting">Fighting</option>
+							<option value="fire">Fire</option>
+							<option value="flying">Flying</option>
+							<option value="ghost">Ghost</option>
+							<option value="grass">Grass</option>
+							<option value="ground">Ground</option>
+							<option value="ice">Ice</option>
+							<option value="normal">Normal</option>
+							<option value="poison">Poison</option>
+							<option value="psychic">Psychic</option>
+							<option value="rock">Rock</option>
+							<option value="steel">Steel</option>
+							<option value="water">Water</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-hp">Hp</label>
+				<input v-model="pokemon.hp" id="input-pokemon-hp" type="number" class="form-control" min="1"/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-attack">Attack</label>
+				<input v-model="pokemon.attack" id="input-pokemon-attack" type="number" class="form-control" min="1"/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-defense">Defense</label>
+				<input v-model="pokemon.defense" id="input-pokemon-defense" type="number" class="form-control" min="1"/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-sp-attack">Sp. Attack</label>
+				<input v-model="pokemon.sp_attack" id="input-pokemon-sp-attack" type="number" class="form-control" min="1"/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-sp-defense">Sp. Defense</label>
+				<input v-model="pokemon.sp_defense" id="input-pokemon-sp-defense" type="number" class="form-control" min="1"/>
+			</div>
+			<div class="form-group mb-2">
+				<label for="input-pokemon-speed">Speed</label>
+				<input v-model="pokemon.speed" id="input-pokemon-speed" type="number" class="form-control" min="1"/>
+			</div>
+			<button type="submit" class="btn btn-primary">Add pokemon</button>
+		</form>
+	</div>
+
+	
+</body>
+</html>
+
+<script>
+
+
+	var app = new Vue({
+		el: '#app',
+		data: {
+			pokemon: {
+				id: "",
+				name: "",
+				primaryType: "",
+				secondaryType: "",
+				hp: 50,
+				attack: 50,
+				defense: 50,
+				sp_attack: 50,
+				sp_defense: 50,
+				speed: 50,
+			}
+		},
+		mounted(){
+		},
+		methods: {
+			async addPokemon(){
+
+				let reqData = {
+					id: this.pokemon.id,
+					name: this.pokemon.name,
+					hp: this.pokemon.hp,
+					attack: this.pokemon.attack,
+					defense: this.pokemon.defense,
+					sp_attack: this.pokemon.sp_attack,
+					sp_defense: this.pokemon.sp_defense,
+					speed: this.pokemon.speed
+				}
+
+				reqData.types = []
+				if(this.pokemon.primaryType){
+					reqData.types.push(this.pokemon.primaryType)
+				}
+				if(this.pokemon.secondaryType){
+					reqData.types.push(this.pokemon.secondaryType)
+				}
+				
+				try {
+					let res = await axios.post("/api/pokedex/add", reqData)
+					console.log("add pokemon response: ", res)
+
+					prompt("Pokemon added!")
+
+					// return to pokedex
+					location.href = "/"
+				}catch(e){
+					// todo: show on screen
+					console.error("Error adding pokemon: ", e)
+				}
+
+			}
+		}
+	})
+</script>
